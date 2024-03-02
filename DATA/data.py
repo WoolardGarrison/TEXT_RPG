@@ -14,7 +14,7 @@ import pyautogui
 import ctypes
 
 # Инициализация переменных
-room_types = ["Monster"] * 55 + ["Altar"] * 25 + ["Shop"] * 5 + ["Meadow"] * 20
+room_types, chances, num_rooms, num_each_type = ["Monster", "Altar", "Shop", "Meadow"] ,[10, 5, 20, 10], 20, [1, 1, 3, 1]
 
 shop_types = ["firearms", "alchemy"]
 
