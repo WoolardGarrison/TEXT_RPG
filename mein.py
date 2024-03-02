@@ -35,7 +35,7 @@ while d.run:
 
         while d.autors:
 
-            d.create_table("info", True, [0], None, 22, "0, quit to meny", "graphic : Fantomm", "music : Fantomm", "code : Fantomm")
+            d.create_table("info", True, [0], None, 22, "0, quit to meny", "graphic : Fantomm", "music : Fantomm", "code : Fantomm ; ...", "plot : Факсянь")
 
             skip_enter = True
             autors = False
