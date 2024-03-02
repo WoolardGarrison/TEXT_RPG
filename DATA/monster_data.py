@@ -58,5 +58,45 @@ forest = {
         "agresia" : 0.9,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
+    },
+     "forest_kashechei": {
+        "Hp": 35,
+        "Damage": 4,
+        "Xp": 8,
+        "Coin": 10,
+        "PhysicalResist": 0.5,
+        "MagicResist": 0.7,
+        "PoisonResist": 0.9,
+        "agresia" : 0.5,
+        "PhysicalDamage" : False,
+        "MagicDamage" : True,
+    },
+    "forest_wildSquirrel": {
+        "Hp": 7,
+        "Damage": 1,
+        "Xp": 2,
+        "Coin": 4,
+        "PhysicalResist": 0.1,
+        "MagicResist": 0.1,
+        "PoisonResist": 0.1,
+        "agresia" : 0.9,
+        "PhysicalDamage" : True,
+        "MagicDamage" : False,
+    },
+    "forest_magician": {
+        "Hp": 45,
+        "Damage": 6,
+        "Xp": 10,
+        "Coin": 13,
+        "PhysicalResist": 0.3,
+        "MagicResist": 0.9,
+        "PoisonResist": 0.7,
+        "agresia" : 0.7,
+        "PhysicalDamage" : False,
+        "MagicDamage" : True,
     }
+
+
+
+    
 }
