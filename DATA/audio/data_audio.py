@@ -1,60 +1,69 @@
 import pygame
+import os
 
 pygame.mixer.init()
 
+import os
+import pygame
+
+# Установка пути к папке со звуковыми файлами
+sound_folder = os.path.join(os.path.dirname(__file__), 'sounds')
+pygame.mixer.init()
+
+def load_sound(filename):
+    return pygame.mixer.Sound(os.path.join(sound_folder, filename))
+
+def play_sound(sound):
+    sound.play()
+
 def play_sound_print():
     # Загрузка и воспроизведение звука
-    print_sound = pygame.mixer.Sound("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/print.wav")
-    print_sound.play()
+    print_sound = load_sound("print.wav")
+    play_sound(print_sound)
 
 def play_sound_print2():
     # Загрузка и воспроизведение звука
-    print2_sound = pygame.mixer.Sound("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/print2.wav")
-    print2_sound.play()
+    print2_sound = load_sound("print2.wav")
+    play_sound(print2_sound)
 
 def play_background_music():
     # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/BGmusic.wav")
-    pygame.mixer.music.play(-1)
-
-def play_background_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/BGmusic.wav")
+    bg_music = os.path.join(sound_folder, "BGmusic.wav")
+    pygame.mixer.music.load(bg_music)
     pygame.mixer.music.play(-1)
 
 def stop_background_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/BGmusic.wav")
+    # Остановка фоновой музыки
     pygame.mixer.music.stop()
 
 def play_battle_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/Battle Music.wav")
+    # Загрузка и воспроизведение музыки для битвы
+    battle_music = os.path.join(sound_folder, "Battle Music.wav")
+    pygame.mixer.music.load(battle_music)
     pygame.mixer.music.play(-1)
 
 def stop_battle_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/Battle Music.wav")
+    # Остановка музыки для битвы
     pygame.mixer.music.stop()
 
 def play_shop_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/Shop Music.wav")
+    # Загрузка и воспроизведение музыки для магазина
+    shop_music = os.path.join(sound_folder, "Shop Music.wav")
+    pygame.mixer.music.load(shop_music)
     pygame.mixer.music.play(-1)
 
 def stop_shop_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/Shop Music.wav")
+    # Остановка музыки для магазина
     pygame.mixer.music.stop()
 
 def play_forest_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/Forest Music.wav")
+    # Загрузка и воспроизведение музыки для леса
+    forest_music = os.path.join(sound_folder, "Forest Music.wav")
+    pygame.mixer.music.load(forest_music)
     pygame.mixer.music.play(-1)
 
 def stop_forest_music():
-    # Загрузка и воспроизведение фоновой музыки
-    pygame.mixer.music.load("D:/Python/2Dgame/Windows/TextRPG/DATA/audio/Forest Music.wav")
+    # Остановка музыки для леса
     pygame.mixer.music.stop()
 
 if __name__ == "__main__":
