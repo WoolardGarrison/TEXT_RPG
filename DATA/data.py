@@ -33,6 +33,8 @@ name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points = 
 #                                          item H  CH  WE1 WE2
 item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""
 
+room_map = []
+
 hdl = ctypes.windll.kernel32.GetStdHandle(-11)
 
 logo = [
