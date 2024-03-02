@@ -291,7 +291,7 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
         separator_down_error()
     da.play_sound_print()
 
-def play_animation_logo(frames, delay=0.3):
+def play_animation(frames, delay=0.3):
     clear()
     for frame in frames:
         print(frame)

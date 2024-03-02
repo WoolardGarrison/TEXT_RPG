@@ -23,7 +23,7 @@ def process_element(element):
 
 d.open_console_fullscreen()
 d.set_font_size(23)
-d.play_animation_logo(d.logo, 0.3)
+d.play_animation(d.logo, 0.3)
 d.time.sleep(3)
 
 while d.run:
