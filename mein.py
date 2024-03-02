@@ -28,10 +28,10 @@ d.time.sleep(3)
 
 while d.run:
     
+    d.da.play_background_music()
+
     while d.meny:
         d.clear()
-
-        d.da.play_background_music()
 
         while d.autors:
 

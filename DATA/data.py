@@ -28,7 +28,7 @@ DoublePunch, MagicResist, PhysicalResist, PoisonResist, ToxinResist, ManaRecover
 MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
 
 #                                                                               name    class   Dm  HP  mHP G  XP XTL L  IS P
-name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points = "NULL", "NULL", 20, 9999, 70, 0, 0, 10, 0, 0, 0
+name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0
 
 #                                          item H  CH  WE1 WE2
 item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""
