@@ -3,9 +3,6 @@ import os
 
 pygame.mixer.init()
 
-import os
-import pygame
-
 # Установка пути к папке со звуковыми файлами
 sound_folder = os.path.join(os.path.dirname(__file__), 'sounds')
 pygame.mixer.init()
