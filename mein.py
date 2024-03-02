@@ -195,5 +195,8 @@ while d.run:
     while d.game_over:
         d.create_table("info", False, [0, 2], {0 : "center", 1 : "center"}, 25, f"{d.name}", f"point : {d.points}", f"HP : {d.maxHp}", f"damage : {d.Dm}", f"gold : {d.gold}", f"Lv : {d.Lv}")
         input("> ")
-        quit()
+        d.play = False
+        d.meny = True
+        d.game_over = False
+
 
