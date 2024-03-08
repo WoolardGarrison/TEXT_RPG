@@ -32,6 +32,7 @@ layer_1 = [
 if __name__ == "__main__":
     def clear():
         os.system("cls")
+        
     def play_animation(frames, delay=0.3):
         clear()
         for frame in frames:
