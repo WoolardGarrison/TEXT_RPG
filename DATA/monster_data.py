@@ -95,8 +95,4 @@ forest = {
         "PhysicalDamage" : False,
         "MagicDamage" : True,
     }
-
-
-
-    
 }
