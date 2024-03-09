@@ -183,13 +183,62 @@ while d.run:
             d.saveFile()
             break
         elif dest == "1":
-            for index, element in enumerate(d.room_map):
-                print(f"Обработка элемента {index}: {element}")
-                process_element(element)
+            while d.trips:
 
-                if d.game_over:
-                    d.play = False
-                    break
+                if d.layer == 1:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_1, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 2:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_2, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 3:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_3, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 4:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_4, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 5:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_5, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 6:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_6, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 7:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_7, 0.2)
+                    else:
+                        pass
+                
+                elif d.layer == 8:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_8, 0.2)
+                    else:
+                        pass
+
+                elif d.layer == 9:
+                    if d.playerMap == True:
+                        d.play_animation(d.ld.layerMapGUI_9, 0.2)
+                    else:
+                        pass
+
             dest = input("> ")
     
     while d.game_over:

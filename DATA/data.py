@@ -12,14 +12,15 @@ import DATA.audio.data_audio as da
 import json
 import pyautogui
 import ctypes
+import DATA.level_data as ld
 
 # Инициализация переменных
 room_types, chances, num_rooms, num_each_type = ["Monster", "Altar", "Shop", "Meadow"] ,[10, 5, 20, 10], 20, [1, 1, 3, 1]
 
 shop_types = ["firearms", "alchemy"]
 
-#                                                                                               run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data
-run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data = True, True, False, False, False, False, True, True, False, False, {}
+#                                                                                                       run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data Trip
+run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips = True, True, False, False, False, False, True, True, False, False, {}, False
 
 #                                                                                                       DP     MR     PhyR     PR    TR    ManaR  ECAXP
 DoublePunch, MagicResist, PhysicalResist, PoisonResist, ToxinResist, ManaRecovery, EarningCoinsAndXP = False, False, False, False, False, False, False
@@ -27,8 +28,10 @@ DoublePunch, MagicResist, PhysicalResist, PoisonResist, ToxinResist, ManaRecover
 #                                                                    MRI  PRI  poiRI TRI
 MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
 
-#                                                                                      name    class   Dm  HP  mHP G  XP XTL L  IS P  L
-name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0, 1
+#                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   map
+name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0, 1, False
+#                       PM
+playerMonstronomicon = False
 
 #                                          item H  CH  WE1 WE2
 item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""
@@ -90,7 +93,7 @@ def saveFile():
     global name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
            PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
            ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, room_map, points, data, item, \
-           helmet, chestplate, weapon, weapon2
+           helmet, chestplate, weapon, weapon2, layer
 
     data = {
         "name": name,
@@ -120,7 +123,8 @@ def saveFile():
         "helmet": helmet, 
         "chestplate": chestplate, 
         "weapon": weapon, 
-        "weapon2": weapon2
+        "weapon2": weapon2,
+        "layer" : layer
     }
 
     with open("save.json", "w") as f:
@@ -131,7 +135,7 @@ def loadFile():
     global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
            PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
            ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, room_map, points, item, \
-           helmet, chestplate, weapon, weapon2
+           helmet, chestplate, weapon, weapon2, layer
 
     try:
         with open("save.json", "r") as f:
@@ -142,7 +146,7 @@ def loadFile():
                          "MagicResist", "PhysicalResist", "PoisonResist", "ToxinResist", "MagicResistInt",
                          "PhysicalResistInt", "PoisonResistInt", "ToxinResistInt", "ManaRecovery",
                          "EarningCoinsAndXP", "improvementStar", "room_map", "points", "item", "helmet", "chestplate",
-                         "weapon", "weapon2"]
+                         "weapon", "weapon2", layer]
         for key in required_keys:
             if key not in data:
                 raise KeyError(f"Key '{key}' not found in the loaded data")
@@ -176,6 +180,7 @@ def loadFile():
         chestplate = data["chestplate"]
         weapon = data["weapon"]
         weapon2 = data["weapon2"]
+        layer = data["layer"]
 
     except FileNotFoundError:
         create_table("error", True, None, {0: "center"}, 45, "ERROR: File not found. Creating a new one.")
