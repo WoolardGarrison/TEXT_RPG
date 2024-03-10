@@ -28,10 +28,10 @@ DoublePunch, MagicResist, PhysicalResist, PoisonResist, ToxinResist, ManaRecover
 #                                                                    MRI  PRI  poiRI TRI
 MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
 
-#                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   map
-name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0, 1, False
-#                       PM
-playerMonstronomicon = False
+#                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   !map
+name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0, 1, True
+#                               PM  x  y
+playerMonstronomicon, Px, Py = False, 0, 0
 
 #                                          item H  CH  WE1 WE2
 item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""
@@ -93,7 +93,7 @@ def saveFile():
     global name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
            PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
            ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, room_map, points, data, item, \
-           helmet, chestplate, weapon, weapon2, layer
+           helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     data = {
         "name": name,
@@ -124,7 +124,9 @@ def saveFile():
         "chestplate": chestplate, 
         "weapon": weapon, 
         "weapon2": weapon2,
-        "layer" : layer
+        "layer" : layer,
+        "Px" : Px,
+        "Py" : Py,
     }
 
     with open("save.json", "w") as f:
@@ -135,7 +137,7 @@ def loadFile():
     global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
            PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
            ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, room_map, points, item, \
-           helmet, chestplate, weapon, weapon2, layer
+           helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     try:
         with open("save.json", "r") as f:
@@ -146,7 +148,7 @@ def loadFile():
                          "MagicResist", "PhysicalResist", "PoisonResist", "ToxinResist", "MagicResistInt",
                          "PhysicalResistInt", "PoisonResistInt", "ToxinResistInt", "ManaRecovery",
                          "EarningCoinsAndXP", "improvementStar", "room_map", "points", "item", "helmet", "chestplate",
-                         "weapon", "weapon2", layer]
+                         "weapon", "weapon2", "layer", "Px", "Py"]
         for key in required_keys:
             if key not in data:
                 raise KeyError(f"Key '{key}' not found in the loaded data")
@@ -181,6 +183,8 @@ def loadFile():
         weapon = data["weapon"]
         weapon2 = data["weapon2"]
         layer = data["layer"]
+        Px = data["Px"]
+        Py = data["Py"]
 
     except FileNotFoundError:
         create_table("error", True, None, {0: "center"}, 45, "ERROR: File not found. Creating a new one.")
@@ -331,3 +335,19 @@ def set_font_size(size):
     font.FaceName = "Consolas"
 
     ctypes.windll.kernel32.SetCurrentConsoleFontEx(hdl, ctypes.c_ulong(False), ctypes.pointer(font))
+
+class Player:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def display_map(map_array, player):
+    clear()
+    for y, row in enumerate(map_array):
+        for x, char in enumerate(row):
+            if player.x == x and player.y == y:
+                print('@', end='')
+            else:
+                print(char, end='')
+        print()
+        time.sleep(0.08)

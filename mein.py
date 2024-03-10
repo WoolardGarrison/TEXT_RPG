@@ -183,63 +183,87 @@ while d.run:
             d.saveFile()
             break
         elif dest == "1":
-            while d.trips:
+            d.trips = True
+            if d.layer == 1:
+                d.loadFile()
 
-                if d.layer == 1:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_1, 0.2)
-                    else:
-                        pass
+                if d.Px == 0 and d.Py == 0:
+                    d.Px = d.ld.layer1XSpawn
+                    d.Py = d.ld.layer1YSpawn
 
-                elif d.layer == 2:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_2, 0.2)
-                    else:
-                        pass
+                if d.playerMap == True:
+                    player = d.Player(d.Px, d.Py)
 
-                elif d.layer == 3:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_3, 0.2)
-                    else:
-                        pass
+                    while d.trips:
+                        d.display_map(d.ld.layerMapGUI_1, player)
 
-                elif d.layer == 4:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_4, 0.2)
-                    else:
-                        pass
+                        d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
+                        move = input("> ")
 
-                elif d.layer == 5:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_5, 0.2)
-                    else:
-                        pass
+                        if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
+                            player.y -= 1
+                        elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
+                            player.y += 1
+                        elif move.lower() == 'a' and d.ld.layerMapGUI_1[player.y][player.x - 1] != '*':
+                            player.x -= 1
+                        elif move.lower() == 'd' and d.ld.layerMapGUI_1[player.y][player.x + 1] != '*':
+                            player.x += 1
+                        elif move.lower() == 'q':
+                            d.Px = player.x
+                            d.Py = player.y
+                            d.saveFile()
+                            d.trips = False
+                        
+                else:
+                    pass
 
-                elif d.layer == 6:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_6, 0.2)
-                    else:
-                        pass
+            elif d.layer == 2:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_2, 0.2)
+                else:
+                    pass
 
-                elif d.layer == 7:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_7, 0.2)
-                    else:
-                        pass
+            elif d.layer == 3:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_3, 0.2)
+                else:
+                    pass
+
+            elif d.layer == 4:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_4, 0.2)
+                else:
+                    pass
+
+            elif d.layer == 5:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_5, 0.2)
+                else:
+                    pass
+
+            elif d.layer == 6:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_6, 0.2)
+                else:
+                    pass
+
+            elif d.layer == 7:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_7, 0.2)
+                else:
+                    pass
                 
-                elif d.layer == 8:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_8, 0.2)
-                    else:
-                        pass
+            elif d.layer == 8:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_8, 0.2)
+                else:
+                    pass
 
-                elif d.layer == 9:
-                    if d.playerMap == True:
-                        d.play_animation(d.ld.layerMapGUI_9, 0.2)
-                    else:
-                        pass
-
-            dest = input("> ")
+            elif d.layer == 9:
+                if d.playerMap == True:
+                    d.play_animation(d.ld.layerMapGUI_9, 0.2)
+                else:
+                    pass
     
     while d.game_over:
         d.create_table("info", False, [0, 2], {0 : "center", 1 : "center"}, 25, f"{d.name}", f"point : {d.points}", f"HP : {d.maxHp}", f"damage : {d.Dm}", f"gold : {d.gold}", f"Lv : {d.Lv}")
