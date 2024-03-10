@@ -10,6 +10,7 @@ forest = {
         "agresia" : 0.6,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
+        "Description" : "green, big ears, short stature, sharp talons.",
     },
     "forest_troll": {
         "Hp": 50,
@@ -22,6 +23,7 @@ forest = {
         "agresia" : 0.76,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
+        "Description" : "green, a big increase, frizzy green hair with beard, body hair.",
     },
     "forest_witcher": {
         "Hp": 40,
@@ -34,6 +36,7 @@ forest = {
         "agresia" : 0.86,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
+        "Description" : "camouflage raincoat covering the face, long staff.",
     },
     "wooden_ent": {
         "Hp": 60,
@@ -46,6 +49,7 @@ forest = {
         "agresia" : 0.89,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
+        "Description" : "sliver skin, wooden body texture, claim face.",
     },
     "forest_ghost": {
         "Hp": 30,
@@ -58,18 +62,20 @@ forest = {
         "agresia" : 0.9,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
+        "Description" : "invisible, nimble, quiet, secretive, good hearing.",
     },
      "forest_kashechei": {
-        "Hp": 35,
-        "Damage": 4,
-        "Xp": 8,
-        "Coin": 10,
+        "Hp": 9999999,
+        "Damage": 6,
+        "Xp": 800,
+        "Coin": 1000,
         "PhysicalResist": 0.5,
         "MagicResist": 0.7,
         "PoisonResist": 0.9,
-        "agresia" : 0.5,
+        "agresia" : 0.4,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
+        "Description" : "immortal, crown on head, pale skin color, skinny arms.",
     },
     "forest_wildSquirrel": {
         "Hp": 7,
@@ -82,6 +88,7 @@ forest = {
         "agresia" : 0.9,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
+        "Description" : "fast, aggressive, small, weak",
     },
     "forest_magician": {
         "Hp": 45,
@@ -94,5 +101,6 @@ forest = {
         "agresia" : 0.7,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
+        "Description" : "black robe, static, dangerous, mysterious",
     }
 }
