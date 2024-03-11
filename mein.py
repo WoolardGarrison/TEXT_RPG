@@ -202,7 +202,6 @@ while d.run:
                             d.saveFile()
                             d.trips = False
 
-
             if d.layer == 2:
                 d.loadFile()
 
@@ -213,9 +212,13 @@ while d.run:
                     player = d.Player(d.Px, d.Py)
 
                     while d.trips:
+                        if d.Hp <= 0:
+                            d.trips = False
+                            d.game_over = True
+
                         d.display_map(d.ld.layerMapGUI_2, player)
 
-                        d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
+                        d.create_table("info", False, None, None, 29, "where do you want to go? (W|A|S|D|Q-qute|I-inventory|M-monstronomicon)")
                         move = input("> ")
 
                         if move.lower() == 'w' and d.ld.layerMapGUI_2[player.y - 1][player.x] != '*':
@@ -235,6 +238,16 @@ while d.run:
                             d.Py = player.y
                             d.saveFile()
                             d.trips = False
+
+                        elif move.lower() == 'i':
+                            event.openInventory()
+
+                        elif move.lower() == 'm':
+                            if d.playerMonstronomicon == True:
+                                pass
+                            else:
+                                #доделать
+                                d.create_table("info", True, None, None, 22, "")
 
             elif d.layer == 3:
                 if d.playerMap == True:

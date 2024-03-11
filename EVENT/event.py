@@ -17,7 +17,7 @@ def monster():
 
     random_monster = random.choice(list(md.forest.keys()))
 
-    monster_name = random_monster
+    monster_name = md.forest[random_monster]["name"]
     monster_Hp = md.forest[random_monster]["Hp"]
     monster_Damage = md.forest[random_monster]["Damage"]
     monster_PResist = md.forest[random_monster]["PhysicalResist"]
@@ -51,6 +51,9 @@ def monster():
                 monster_Hp = monster_Hp - math.ceil(d.Dm * monster_MResist)
             elif d.heroClass == "NULL":
                 monster_Hp = monster_Hp - 5 - d.Dm
+            
+            if monster_Hp < 0:
+                monster_Hp = 0
 
             d.create_table("info", True, None, {0 : "center"}, 45, f"you hit the {monster_name}, he has {monster_Hp} HP" )
             input("> ")
@@ -418,6 +421,12 @@ def randomEvent():
         chances[0] = min(100, chances[0] + 10)  # Увеличиваем шансы для события 1 на 10
         chances[1] = max(0, chances[1] - 10)  # Уменьшаем шансы для события 2 на 10
 
+def openInventory():
+    d.clear()
+
+    print("жду @nikmen2045 ")
+
+    input("> ")
 
 if __name__ == "__main__":
     

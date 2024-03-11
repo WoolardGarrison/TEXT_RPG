@@ -1,5 +1,6 @@
 forest = {
     "goblin": {
+        "name": "goblin",
         "Hp": 35,
         "Damage": 5,
         "Xp": 5,
@@ -13,6 +14,7 @@ forest = {
         "Description" : "green, big ears, short stature, sharp talons.",
     },
     "forest_troll": {
+        "name": "forest troll",
         "Hp": 50,
         "Damage": 8,
         "Xp": 8,
@@ -26,6 +28,7 @@ forest = {
         "Description" : "green, a big increase, frizzy green hair with beard, body hair.",
     },
     "forest_witcher": {
+        "name": "forest witcher",
         "Hp": 40,
         "Damage": 7,
         "Xp": 7,
@@ -39,6 +42,7 @@ forest = {
         "Description" : "camouflage raincoat covering the face, long staff.",
     },
     "wooden_ent": {
+        "name": "wooden ent",
         "Hp": 60,
         "Damage": 6,
         "Xp": 10,
@@ -52,6 +56,7 @@ forest = {
         "Description" : "sliver skin, wooden body texture, claim face.",
     },
     "forest_ghost": {
+        "name": "forest ghost",
         "Hp": 30,
         "Damage": 4,
         "Xp": 6,
@@ -65,6 +70,7 @@ forest = {
         "Description" : "invisible, nimble, quiet, secretive, good hearing.",
     },
      "forest_kashechei": {
+        "name": "forest kashechei",
         "Hp": 9999999,
         "Damage": 6,
         "Xp": 800,
@@ -78,6 +84,7 @@ forest = {
         "Description" : "immortal, crown on head, pale skin color, skinny arms.",
     },
     "forest_wildSquirrel": {
+        "name": "forest wildSquirrel",
         "Hp": 7,
         "Damage": 1,
         "Xp": 2,
@@ -91,6 +98,7 @@ forest = {
         "Description" : "fast, aggressive, small, weak",
     },
     "forest_magician": {
+        "name": "forest magician",
         "Hp": 45,
         "Damage": 6,
         "Xp": 10,

@@ -312,4 +312,5 @@ def display_map(map_array, player):
             else:
                 print(char, end='')
         print()
+        da.play_sound_print()
         time.sleep(0.08)  # добавим небольшую задержку для лучшей анимации

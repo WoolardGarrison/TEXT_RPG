@@ -1,13 +1,13 @@
 {
     "name": " ",
     "heroClass": "NULL",
-    "Hp": 26,
-    "maxHp": 105,
-    "gold": 18,
+    "Hp": 70,
+    "maxHp": 70,
+    "gold": 0,
     "Dm": 20,
     "Xp": 0,
-    "XpToLv": 15,
-    "Lv": 1,
+    "XpToLv": 10,
+    "Lv": 0,
     "DoublePunch": false,
     "MagicResist": false,
     "PhysicalResist": false,
@@ -19,7 +19,7 @@
     "ToxinResistInt": 1.8,
     "ManaRecovery": false,
     "EarningCoinsAndXP": false,
-    "improvementStar": 1,
+    "improvementStar": 0,
     "points": 0,
     "item": [],
     "helmet": "",
@@ -27,6 +27,6 @@
     "weapon": "",
     "weapon2": "",
     "layer": 1,
-    "Px": 29,
-    "Py": 16
+    "Px": 0,
+    "Py": 0
 }
