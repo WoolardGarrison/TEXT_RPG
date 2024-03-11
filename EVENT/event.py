@@ -9,6 +9,8 @@ import DATA.data_persons as dp
 import DATA.data as d
 import random
 
+chances = [60, 40]
+
 
 def monster():
     d.batle = True
@@ -399,6 +401,22 @@ def shop():
 
     d.da.stop_shop_music()
     d.da.play_background_music()
+
+def randomEvent():
+    # Выбираем случайное событие на основе текущих шансов
+    event = random.choices([1, 2], weights=chances, k=1)[0]
+
+    # Печатаем выбранное событие
+    if event == 1:
+        monster()
+        # Изменяем шансы для следующего события
+        chances[0] = max(0, chances[0] - 10)  # Уменьшаем шансы для события 1 на 10
+        chances[1] = min(100, chances[1] + 10)  # Увеличиваем шансы для события 2 на 10
+    else:
+        shop()
+        # Изменяем шансы для следующего события
+        chances[0] = min(100, chances[0] + 10)  # Увеличиваем шансы для события 1 на 10
+        chances[1] = max(0, chances[1] - 10)  # Уменьшаем шансы для события 2 на 10
 
 
 if __name__ == "__main__":

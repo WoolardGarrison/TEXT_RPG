@@ -14,9 +14,6 @@ import pyautogui
 import ctypes
 import DATA.level_data as ld
 
-# Инициализация переменных
-room_types, chances, num_rooms, num_each_type = ["Monster", "Altar", "Shop", "Meadow"] ,[10, 5, 20, 10], 20, [1, 1, 3, 1]
-
 shop_types = ["firearms", "alchemy"]
 
 #                                                                                                       run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data Trip
@@ -53,46 +50,11 @@ logo = [
     "                                                              ░                                                 ░"
 ]
 
-# Генерация карты
-def generate_map():
-    map_size = 20
-    room_map = []
-
-    max_monster_count_in_row = random.randint(1, 5)
-    current_monster_count = 0
-
-    while True:
-        first_room_type = random.choice(room_types)
-        if first_room_type not in ["Meadow", "Altar"]:
-            room_map.append(first_room_type)
-            break
-
-    for _ in range(map_size - 2):
-        last_room_type = room_map[-1]
-
-        if last_room_type == "Monster" and current_monster_count < max_monster_count_in_row:
-            room_type = "Monster"
-            current_monster_count += 1
-        else:
-            available_types = [rtype for rtype in room_types if rtype != last_room_type]
-            room_type = random.choice(available_types)
-
-            if room_type == "Monster":
-                current_monster_count = 1
-            else:
-                current_monster_count = 0
-
-        room_map.append(room_type)
-
-    return room_map
-
-room_map = generate_map()
-
 # Функции сохранения и загрузки данных
 def saveFile():
     global name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
            PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
-           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, room_map, points, data, item, \
+           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, data, item, \
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     data = {
@@ -117,7 +79,6 @@ def saveFile():
         "ManaRecovery": ManaRecovery,
         "EarningCoinsAndXP": EarningCoinsAndXP,
         "improvementStar": improvementStar,
-        "room_map": room_map,
         "points": points,
         "item": item,
         "helmet": helmet, 
@@ -136,7 +97,7 @@ def saveFile():
 def loadFile():
     global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
            PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
-           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, room_map, points, item, \
+           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, item, \
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     try:
@@ -147,7 +108,7 @@ def loadFile():
         required_keys = ["name", "heroClass", "Hp", "maxHp", "gold", "Dm", "Xp", "XpToLv", "Lv", "DoublePunch",
                          "MagicResist", "PhysicalResist", "PoisonResist", "ToxinResist", "MagicResistInt",
                          "PhysicalResistInt", "PoisonResistInt", "ToxinResistInt", "ManaRecovery",
-                         "EarningCoinsAndXP", "improvementStar", "room_map", "points", "item", "helmet", "chestplate",
+                         "EarningCoinsAndXP", "improvementStar", "points", "item", "helmet", "chestplate",
                          "weapon", "weapon2", "layer", "Px", "Py"]
         for key in required_keys:
             if key not in data:
@@ -175,7 +136,6 @@ def loadFile():
         ManaRecovery = data["ManaRecovery"]
         EarningCoinsAndXP = data["EarningCoinsAndXP"]
         improvementStar = data["improvementStar"]
-        room_map = data["room_map"]
         points = data["points"]
         item = data["item"]
         helmet = data["helmet"]
@@ -347,7 +307,9 @@ def display_map(map_array, player):
         for x, char in enumerate(row):
             if player.x == x and player.y == y:
                 print('@', end='')
+            elif not playerMap and (abs(player.x - x) > 3 or abs(player.y - y) > 3):  # Если карта закрыта и клетка находится далеко от игрока
+                print(' ', end='')  # Показываем пустую клетку
             else:
                 print(char, end='')
         print()
-        time.sleep(0.08)
+        time.sleep(0.08)  # добавим небольшую задержку для лучшей анимации

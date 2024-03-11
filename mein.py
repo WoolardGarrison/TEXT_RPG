@@ -1,26 +1,7 @@
 import DATA.data as d
 import EVENT.event as event
 
-def process_element(element):
-    if element == "Monster":
-        event.monster()
-        d.create_table("info", True, None, {0 : "center"}, 22, "you win and move on")
-        input("> ")
-    elif element == "Altar":
-        # Ваш код для обработки случая с Altar
-        print("Обработка случая с Altar")
-        input("> ")
-    elif element == "Shop":
-        event.shop()
-        d.create_table("info", True, None, {0 : "center"}, 22, "you leave the store and move on")
-        input("> ")
-    elif element == "Meadow":
-        # Ваш код для обработки случая с Rest
-        print("Обработка случая с Rest")
-        input("> ")
-    else:
-        print("Неизвестный элемент")
-
+d.clear()
 d.open_console_fullscreen()
 d.set_font_size(23)
 d.play_animation(d.logo, 0.3)
@@ -45,7 +26,7 @@ while d.run:
             if choiceAutors == "0":
                 break
 
-        d.create_table("info", True, None, None, 22, "1, new game", "2, load game", "3, autors", "4, quit game")
+        d.create_table("info", True, None, None, 22, "1, new game", "2, load game", "3, autors", "0, quit game")
 
         skip_enter = False
                 
@@ -147,7 +128,7 @@ while d.run:
             elif else_choice == "3":
                 d.autors = True
 
-            elif else_choice == "4":
+            elif else_choice == "0":
                 quit()
 
     while d.play:
@@ -191,7 +172,6 @@ while d.run:
                     d.Px = d.ld.layer1XSpawn
                     d.Py = d.ld.layer1YSpawn
 
-                if d.playerMap == True:
                     player = d.Player(d.Px, d.Py)
 
                     while d.trips:
@@ -202,26 +182,59 @@ while d.run:
 
                         if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
                             player.y -= 1
+                            event.randomEvent()
+
                         elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
                             player.y += 1
+                            event.randomEvent()
+
                         elif move.lower() == 'a' and d.ld.layerMapGUI_1[player.y][player.x - 1] != '*':
                             player.x -= 1
+                            event.randomEvent()
+
                         elif move.lower() == 'd' and d.ld.layerMapGUI_1[player.y][player.x + 1] != '*':
                             player.x += 1
+                            event.randomEvent()
+
                         elif move.lower() == 'q':
                             d.Px = player.x
                             d.Py = player.y
                             d.saveFile()
                             d.trips = False
-                        
-                else:
-                    pass
 
-            elif d.layer == 2:
-                if d.playerMap == True:
-                    d.play_animation(d.ld.layerMapGUI_2, 0.2)
-                else:
-                    pass
+
+            if d.layer == 2:
+                d.loadFile()
+
+                if d.Px == 0 and d.Py == 0:
+                    d.Px = d.ld.layer2XSpawn
+                    d.Py = d.ld.layer2YSpawn
+
+                    player = d.Player(d.Px, d.Py)
+
+                    while d.trips:
+                        d.display_map(d.ld.layerMapGUI_2, player)
+
+                        d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
+                        move = input("> ")
+
+                        if move.lower() == 'w' and d.ld.layerMapGUI_2[player.y - 1][player.x] != '*':
+                            player.y -= 1
+
+                        elif move.lower() == 's' and d.ld.layerMapGUI_2[player.y + 1][player.x] != '*':
+                            player.y += 1
+
+                        elif move.lower() == 'a' and d.ld.layerMapGUI_2[player.y][player.x - 1] != '*':
+                            player.x -= 1
+
+                        elif move.lower() == 'd' and d.ld.layerMapGUI_2[player.y][player.x + 1] != '*':
+                            player.x += 1
+
+                        elif move.lower() == 'q':
+                            d.Px = player.x
+                            d.Py = player.y
+                            d.saveFile()
+                            d.trips = False
 
             elif d.layer == 3:
                 if d.playerMap == True:

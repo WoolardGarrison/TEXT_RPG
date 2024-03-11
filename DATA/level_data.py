@@ -53,7 +53,7 @@ layerMapGUI_2 = [
     "          ****       |           ****          ",
     "               *****************         ",
 ]
-layer2XYSpawn = {25, 12}
+layer2XSpawn, layer2YSpawn = 25, 12
 
 layerMapGUI_3 = [
     "              *******************              ",
