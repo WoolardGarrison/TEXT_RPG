@@ -174,33 +174,33 @@ while d.run:
 
                     player = d.Player(d.Px, d.Py)
 
-                    while d.trips:
-                        d.display_map(d.ld.layerMapGUI_1, player)
+                while d.trips:
+                    d.display_map(d.ld.layerMapGUI_1, player)
 
-                        d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
-                        move = input("> ")
+                    d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
+                    move = input("> ")
 
-                        if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
-                            player.y -= 1
-                            event.randomEvent()
+                    if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
+                        player.y -= 1
+                        event.randomEvent()
 
-                        elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
-                            player.y += 1
-                            event.randomEvent()
+                    elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
+                        player.y += 1
+                        event.randomEvent()
 
-                        elif move.lower() == 'a' and d.ld.layerMapGUI_1[player.y][player.x - 1] != '*':
-                            player.x -= 1
-                            event.randomEvent()
+                    elif move.lower() == 'a' and d.ld.layerMapGUI_1[player.y][player.x - 1] != '*':
+                        player.x -= 1
+                        event.randomEvent()
 
-                        elif move.lower() == 'd' and d.ld.layerMapGUI_1[player.y][player.x + 1] != '*':
-                            player.x += 1
-                            event.randomEvent()
+                    elif move.lower() == 'd' and d.ld.layerMapGUI_1[player.y][player.x + 1] != '*':
+                        player.x += 1
+                        event.randomEvent()
 
-                        elif move.lower() == 'q':
-                            d.Px = player.x
-                            d.Py = player.y
-                            d.saveFile()
-                            d.trips = False
+                    elif move.lower() == 'q':
+                        d.Px = player.x
+                        d.Py = player.y
+                        d.saveFile()
+                        d.trips = False
 
             if d.layer == 2:
                 d.loadFile()
@@ -209,45 +209,45 @@ while d.run:
                     d.Px = d.ld.layer2XSpawn
                     d.Py = d.ld.layer2YSpawn
 
-                    player = d.Player(d.Px, d.Py)
+                player = d.Player(d.Px, d.Py)
 
-                    while d.trips:
-                        if d.Hp <= 0:
-                            d.trips = False
-                            d.game_over = True
+                while d.trips:
+                    if d.Hp <= 0:
+                        d.trips = False
+                        d.game_over = True
 
-                        d.display_map(d.ld.layerMapGUI_2, player)
+                    d.display_map(d.ld.layerMapGUI_2, player)
 
-                        d.create_table("info", False, None, None, 29, "where do you want to go? (W|A|S|D|Q-qute|I-inventory|M-monstronomicon)")
-                        move = input("> ")
+                    d.create_table("info", False, None, None, 29, "where do you want to go? (W|A|S|D|Q-qute|I-inventory|M-monstronomicon)")
+                    move = input("> ")
 
-                        if move.lower() == 'w' and d.ld.layerMapGUI_2[player.y - 1][player.x] != '*':
-                            player.y -= 1
+                    if move.lower() == 'w' and d.ld.layerMapGUI_2[player.y - 1][player.x] != '*':
+                        player.y -= 1
 
-                        elif move.lower() == 's' and d.ld.layerMapGUI_2[player.y + 1][player.x] != '*':
-                            player.y += 1
+                    elif move.lower() == 's' and d.ld.layerMapGUI_2[player.y + 1][player.x] != '*':
+                        player.y += 1
 
-                        elif move.lower() == 'a' and d.ld.layerMapGUI_2[player.y][player.x - 1] != '*':
-                            player.x -= 1
+                    elif move.lower() == 'a' and d.ld.layerMapGUI_2[player.y][player.x - 1] != '*':
+                        player.x -= 1
 
-                        elif move.lower() == 'd' and d.ld.layerMapGUI_2[player.y][player.x + 1] != '*':
-                            player.x += 1
+                    elif move.lower() == 'd' and d.ld.layerMapGUI_2[player.y][player.x + 1] != '*':
+                        player.x += 1
 
-                        elif move.lower() == 'q':
-                            d.Px = player.x
-                            d.Py = player.y
-                            d.saveFile()
-                            d.trips = False
+                    elif move.lower() == 'q':
+                        d.Px = player.x
+                        d.Py = player.y
+                        d.saveFile()
+                        d.trips = False
 
-                        elif move.lower() == 'i':
-                            event.openInventory()
+                    elif move.lower() == 'i':
+                        event.openInventory()
 
-                        elif move.lower() == 'm':
-                            if d.playerMonstronomicon == True:
-                                pass
-                            else:
-                                #доделать
-                                d.create_table("info", True, None, None, 22, "")
+                    elif move.lower() == 'm':
+                        if d.playerMonstronomicon == True:
+                            pass
+                        else:
+                            #доделать
+                            d.create_table("info", True, None, None, 22, "")
 
             elif d.layer == 3:
                 if d.playerMap == True:
