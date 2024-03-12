@@ -172,9 +172,14 @@ while d.run:
                     d.Px = d.ld.layer1XSpawn
                     d.Py = d.ld.layer1YSpawn
 
-                    player = d.Player(d.Px, d.Py)
+                player = d.Player(d.Px, d.Py)
 
                 while d.trips:
+                    
+                    if d.Hp <= 0:
+                        d.trips = False
+                        d.game_over = True
+                    
                     d.display_map(d.ld.layerMapGUI_1, player)
 
                     d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
