@@ -169,8 +169,8 @@ while d.run:
                 d.loadFile()
 
                 if d.Px == 0 and d.Py == 0:
-                    d.Px = d.ld.layer1XSpawn
-                    d.Py = d.ld.layer1YSpawn
+                    d.Px = d.ld.layer1.XSpawn
+                    d.Py = d.ld.layer1.YSpawn
 
                 player = d.Player(d.Px, d.Py)
 
@@ -187,60 +187,38 @@ while d.run:
                     if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
                         if player.y < 0:
                             d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
-                            player.y = d.ld.layer1YSpawn
-                            player.x = d.ld.layer1XSpawn
+                            player.y = d.ld.layer1.YSpawn
+                            player.x = d.ld.layer1.XSpawn
                         else:
                             player.y -= 1
                             event.randomEvent()
 
                     elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
-                        player.y += 1
-                        event.randomEvent()
+                        if player.y > 22:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer1.YSpawn
+                            player.x = d.ld.layer1.XSpawn
+                        else:
+                            player.y += 1
+                            event.randomEvent()
 
                     elif move.lower() == 'a' and d.ld.layerMapGUI_1[player.y][player.x - 1] != '*':
-                        player.x -= 1
-                        event.randomEvent()
+                        if player.x < 0:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer1.YSpawn
+                            player.x = d.ld.layer1.XSpawn
+                        else:
+                            player.x -= 1
+                            event.randomEvent()
 
                     elif move.lower() == 'd' and d.ld.layerMapGUI_1[player.y][player.x + 1] != '*':
-                        player.x += 1
-                        event.randomEvent()
-
-                    elif move.lower() == 'q':
-                        d.Px = player.x
-                        d.Py = player.y
-                        d.saveFile()
-                        d.trips = False
-
-            if d.layer == 2:
-                d.loadFile()
-
-                if d.Px == 0 and d.Py == 0:
-                    d.Px = d.ld.layer2XSpawn
-                    d.Py = d.ld.layer2YSpawn
-
-                player = d.Player(d.Px, d.Py)
-
-                while d.trips:
-                    if d.Hp <= 0:
-                        d.trips = False
-                        d.game_over = True
-
-                    d.display_map(d.ld.layerMapGUI_2, player)
-
-                    d.create_table("info", False, None, None, 29, "where do you want to go? (W|A|S|D|Q-qute|I-inventory|M-monstronomicon)")
-                    move = input("> ")
-
-                    if move.lower() == 'w' and d.ld.layerMapGUI_2[player.y - 1][player.x] != '*':
-                        player.y -= 1
-
-                    elif move.lower() == 's' and d.ld.layerMapGUI_2[player.y + 1][player.x] != '*':
-                        player.y += 1
-
-                    elif move.lower() == 'a' and d.ld.layerMapGUI_2[player.y][player.x - 1] != '*':
-                        player.x -= 1
-
-                    elif move.lower() == 'd' and d.ld.layerMapGUI_2[player.y][player.x + 1] != '*':
-                        player.x += 1
+                        if player.x > 48:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer1.YSpawn
+                            player.x = d.ld.layer1.XSpawn
+                        else:
+                            player.x += 1
+                            event.randomEvent()
 
                     elif move.lower() == 'q':
                         d.Px = player.x
@@ -257,6 +235,76 @@ while d.run:
                         else:
                             #доделать
                             d.create_table("info", True, None, None, 22, "")
+                            
+            if d.layer == 2:
+                d.loadFile()
+
+                if d.Px == 0 and d.Py == 0:
+                    d.Px = d.ld.layer2.XSpawn
+                    d.Py = d.ld.layer2.YSpawn
+
+                player = d.Player(d.Px, d.Py)
+
+                while d.trips:
+                    if d.Hp <= 0:
+                        d.trips = False
+                        d.game_over = True
+
+                    d.display_map(d.ld.layerMapGUI_2, player)
+
+                    d.create_table("info", False, None, None, 29, "where do you want to go? (W|A|S|D|Q-qute|I-inventory|M-monstronomicon)")
+                    move = input("> ")
+
+                    if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
+                        if player.y < 0:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer2.YSpawn
+                            player.x = d.ld.layer2.XSpawn
+                        else:
+                            player.y -= 1
+                            event.randomEvent()
+
+                    elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
+                        if player.y > 22:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer2.YSpawn
+                            player.x = d.ld.layer2.XSpawn
+                        else:
+                            player.y += 1
+                            event.randomEvent()
+
+                    elif move.lower() == 'a' and d.ld.layerMapGUI_1[player.y][player.x - 1] != '*':
+                        if player.x < 0:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer2.YSpawn
+                            player.x = d.ld.layer2.XSpawn
+                        else:
+                            player.x -= 1
+                            event.randomEvent()
+
+                    elif move.lower() == 'd' and d.ld.layerMapGUI_1[player.y][player.x + 1] != '*':
+                        if player.x > 48:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer2.YSpawn
+                            player.x = d.ld.layer2.XSpawn
+                        else:
+                            player.x += 1
+                            event.randomEvent()
+
+                    elif move.lower() == 'q':
+                        d.Px = player.x
+                        d.Py = player.y
+                        d.saveFile()
+                        d.trips = False
+
+                    elif move.lower() == 'i':
+                        event.openInventory()
+
+                    elif move.lower() == 'm':
+                        if d.playerMonstronomicon == True:
+                            pass
+                        else:
+                            d.create_table("info", True, None, None, 22, "you don't have a monstronymicon")
 
             elif d.layer == 3:
                 if d.playerMap == True:
