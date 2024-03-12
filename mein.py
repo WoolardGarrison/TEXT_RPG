@@ -175,7 +175,6 @@ while d.run:
                 player = d.Player(d.Px, d.Py)
 
                 while d.trips:
-                    
                     if d.Hp <= 0:
                         d.trips = False
                         d.game_over = True
@@ -186,8 +185,13 @@ while d.run:
                     move = input("> ")
 
                     if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
-                        player.y -= 1
-                        event.randomEvent()
+                        if player.y < 0:
+                            d.create_table("erorre", True, None, None, 22, "beyond the bounds of the gaming world")
+                            player.y = d.ld.layer1YSpawn
+                            player.x = d.ld.layer1XSpawn
+                        else:
+                            player.y -= 1
+                            event.randomEvent()
 
                     elif move.lower() == 's' and d.ld.layerMapGUI_1[player.y + 1][player.x] != '*':
                         player.y += 1

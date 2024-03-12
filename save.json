@@ -4,8 +4,8 @@
     "Hp": 955,
     "maxHp": 1499,
     "gold": 999,
-    "Dm": 50,
-    "Xp": 7,
+    "Dm": 9999999999,
+    "Xp": 13,
     "XpToLv": 23,
     "Lv": 2,
     "DoublePunch": false,
@@ -27,6 +27,6 @@
     "weapon": "",
     "weapon2": "",
     "layer": 1,
-    "Px": 37,
-    "Py": 14
+    "Px": 39,
+    "Py": 0
 }
