@@ -9,7 +9,7 @@ import DATA.data_persons as dp
 import DATA.data as d
 import random
 
-chances = [60, 40]
+chances = [70, 30]
 
 
 def monster():
@@ -413,7 +413,7 @@ def randomEvent():
     if event == 1:
         monster()
         # Изменяем шансы для следующего события
-        chances[0] = max(0, chances[0] - 10)  # Уменьшаем шансы для события 1 на 10
+        chances[0] = max(0, chances[0] - 5)  # Уменьшаем шансы для события 1 на 10
         chances[1] = min(100, chances[1] + 10)  # Увеличиваем шансы для события 2 на 10
     else:
         shop()
