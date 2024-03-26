@@ -28,6 +28,7 @@ def monster():
     monster_agresia = md.forest[random_monster]["agresia"]
     monster_Xp = md.forest[random_monster]["Xp"]
     monster_Coin = md.forest[random_monster]["Coin"]
+    monster_speed = md.forest[random_monster]["speed"]
 
     d.create_table("info", True, None, {0 : "center"}, 40, f"on your way you met a {monster_name}")
 
@@ -59,7 +60,7 @@ def monster():
             input("> ")
 
         elif dest == "2":
-            if random.random() > monster_agresia :
+            if random.random() > monster_agresia or d.speed > monster_speed:
                 d.create_table("info", True, [0], {0 : "center"}, 25, "you runs away", "gold : 0", "XP : 0")
                 d.batle = False
                 input("")
