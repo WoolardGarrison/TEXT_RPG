@@ -27,8 +27,8 @@ MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1
 
 #                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   !map
 name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0, 1, True
-#                               PM  x  y
-playerMonstronomicon, Px, Py = False, 0, 0
+#                                                              PM    x  y   E  M   mM  S
+playerMonstronomicon, Px, Py, Effects, mana, maxMana, speed = False, 0, 0, [], 50, 50, 1
 
 #                                          item H  CH  WE1 WE2
 item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""

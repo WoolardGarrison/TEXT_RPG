@@ -79,6 +79,9 @@ while d.run:
                                 d.Dm = 15
                                 d.MagicResist = True
                                 d.ManaRecovery = True
+                                d.maxMana = 160
+                                d.mana = 160
+                                d.speed = 2
 
                                 break
                             elif classChoice == "2":
@@ -96,6 +99,9 @@ while d.run:
                                 d.ToxinResist = True
                                 d.EarningCoinsAndXP = True
                                 d.DoublePunch = True
+                                d.maxMana = 60
+                                d.mana = 60
+                                d.speed = 3
 
                                 break
                             elif classChoice == "3":
@@ -110,6 +116,9 @@ while d.run:
                                 d.maxHpHp = 190
                                 d.Dm = 30
                                 d.PhysicalResist = True
+                                d.maxMana = 20
+                                d.mana = 20
+                                d.speed = 1
 
                                 break
                         

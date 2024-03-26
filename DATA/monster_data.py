@@ -12,6 +12,7 @@ forest = {
         "PhysicalDamage" : True,
         "MagicDamage" : False,
         "Description" : "green, big ears, short stature, sharp talons.",
+        "speed" : 5,
     },
     "forest_troll": {
         "name": "forest troll",
@@ -26,6 +27,7 @@ forest = {
         "PhysicalDamage" : True,
         "MagicDamage" : False,
         "Description" : "green, a big increase, frizzy green hair with beard, body hair.",
+        "speed" : 3,
     },
     "forest_witcher": {
         "name": "forest witcher",
@@ -40,6 +42,7 @@ forest = {
         "PhysicalDamage" : True,
         "MagicDamage" : False,
         "Description" : "camouflage raincoat covering the face, long staff.",
+        "speed" : 4,
     },
     "wooden_ent": {
         "name": "wooden ent",
@@ -54,6 +57,7 @@ forest = {
         "PhysicalDamage" : True,
         "MagicDamage" : False,
         "Description" : "sliver skin, wooden body texture, claim face.",
+        "speed" : 2,
     },
     "forest_ghost": {
         "name": "forest ghost",
@@ -68,6 +72,7 @@ forest = {
         "PhysicalDamage" : False,
         "MagicDamage" : True,
         "Description" : "invisible, nimble, quiet, secretive, good hearing.",
+        "speed" : 5,
     },
      "forest_kashechei": {
         "name": "forest kashechei",
@@ -82,6 +87,7 @@ forest = {
         "PhysicalDamage" : False,
         "MagicDamage" : True,
         "Description" : "immortal, crown on head, pale skin color, skinny arms.",
+        "speed" : 1,
     },
     "forest_wildSquirrel": {
         "name": "forest wildSquirrel",
@@ -96,6 +102,7 @@ forest = {
         "PhysicalDamage" : True,
         "MagicDamage" : False,
         "Description" : "fast, aggressive, small, weak",
+        "speed" : 7,
     },
     "forest_magician": {
         "name": "forest magician",
@@ -110,5 +117,6 @@ forest = {
         "PhysicalDamage" : False,
         "MagicDamage" : True,
         "Description" : "black robe, static, dangerous, mysterious",
+        "speed" : 5,
     }
 }
