@@ -1,11 +1,19 @@
+from DATA.data import clear, loading_animation, open_console_fullscreen, set_font_size
+
+imports_list = ["DATA.data", "EVENT.event", "sys", "time", "DATA.audio.data_audio", "json", "pyautogui", "ctypes", "DATA.level_data", "math", "os", "DATA.monster_data", "DATA.data_persons",
+                "DATA.item_data", "load sane"]
+clear()
+open_console_fullscreen()
+set_font_size(23)
+loading_animation(imports_list)
+
 import DATA.data as d
 import EVENT.event as event
 
-d.clear()
-d.open_console_fullscreen()
-d.set_font_size(23)
 d.play_animation(d.logo, 0.3)
-d.time.sleep(3)
+d.time.sleep(1)
+
+
 
 while d.run:
     
@@ -77,7 +85,7 @@ while d.run:
                                 d.Hp = 160
                                 d.maxHpHp = 160
                                 d.Dm = 15
-                                d.MagicResist = True
+                                d.MagicResistInt = 0.89
                                 d.ManaRecovery = True
                                 d.maxMana = 160
                                 d.mana = 160
@@ -95,8 +103,8 @@ while d.run:
                                 d.Hp = 140
                                 d.maxHpHp = 140
                                 d.Dm = 10
-                                d.PoisonResist = True
-                                d.ToxinResist = True
+                                d.PoisonResistInt = 0.89
+                                d.ToxinResistInt = 0.89
                                 d.EarningCoinsAndXP = True
                                 d.DoublePunch = True
                                 d.maxMana = 60
@@ -115,7 +123,7 @@ while d.run:
                                 d.Hp = 190
                                 d.maxHpHp = 190
                                 d.Dm = 30
-                                d.PhysicalResist = True
+                                d.PhysicalResistInt = 0.89
                                 d.maxMana = 20
                                 d.mana = 20
                                 d.speed = 1

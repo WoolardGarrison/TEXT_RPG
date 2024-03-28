@@ -6,8 +6,8 @@ def clear():
 
 clear()
 
+import sys
 import time
-import random
 import DATA.audio.data_audio as da
 import json
 import pyautogui
@@ -19,8 +19,8 @@ shop_types = ["firearms", "alchemy"]
 #                                                                                                       run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data Trip
 run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips = True, True, False, False, False, False, True, True, False, False, {}, False
 
-#                                                                                                       DP     MR     PhyR     PR    TR    ManaR  ECAXP
-DoublePunch, MagicResist, PhysicalResist, PoisonResist, ToxinResist, ManaRecovery, EarningCoinsAndXP = False, False, False, False, False, False, False
+#                                              DP     ManaR  ECAXP
+DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
 
 #                                                                    MRI  PRI  poiRI TRI
 MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
@@ -314,3 +314,10 @@ def display_map(map_array, player):
         print()
         da.play_sound_print()
         time.sleep(0.08)  # добавим небольшую задержку для лучшей анимации
+
+def loading_animation(imports):
+    max_length = max(len(module) for module in imports)
+    for module in imports:
+        sys.stdout.write(f"\rLoading {module}...{' '*(max_length - len(module))} DONE\n")
+        sys.stdout.flush()
+        time.sleep(0.1)  # Увеличиваем задержку до 0.5 секунды

@@ -8,6 +8,7 @@ import DATA.monster_data as md
 import DATA.data_persons as dp
 import DATA.data as d
 import random
+import DATA.item_data as itemd
 
 chances = [70, 30]
 
@@ -155,15 +156,15 @@ def shop():
 
                 elif shop_type == "alchemy":
                     phrases = random.choice(dp.alchemist_phrases_NULL)
-                    random_items = random.sample(dp.alchemical_items, 3)
+                    random_items = random.sample(itemd.alchemical_items, 3)
 
                     item1 = random_items[0]
                     item2 = random_items[1]
                     item3 = random_items[2]
 
-                    gold_item1 = random.randint(item1["mingold"], item1["maxgold"])
-                    gold_item2 = random.randint(item2["mingold"], item2["maxgold"])
-                    gold_item3 = random.randint(item3["mingold"], item3["maxgold"])
+                    gold_item1 = random.randint(item1["minGold"], item1["maxGold"])
+                    gold_item2 = random.randint(item2["minGold"], item2["maxGold"])
+                    gold_item3 = random.randint(item3["minGold"], item3["maxGold"])
 
                     d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases}")
                     d.shop = True
@@ -193,7 +194,7 @@ def shop():
                             else:
                                 if d.gold >= gold_item1:
                                     d.gold =- gold_item1
-                                    d.item.append(item1['name'])
+                                    d.item.append(item1['ID'])
                                     thank_phrase = random.choice(dp.alchemist_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "alchemy", f"{thank_phrase}")
 
@@ -241,7 +242,7 @@ def shop():
             else:
                 if shop_type == "firearms":
                     phrases = random.choice(dp.blacksmith_phrases)
-                    random_items = random.sample(dp.blacksmith_items, 3)
+                    random_items = random.sample(itemd.blacksmith_items, 3)
 
                     item1 = random_items[0]
                     item2 = random_items[1]
@@ -270,68 +271,71 @@ def shop():
                             break
 
                         elif dest == "1":
-                            if item1['name'] == "1, --------":
+                            if item1['name'] == "--------":
                                 phrases_no_produkt = random.choice(dp.blacksmith_phrases_no_product)
                                 d.create_table("info", True, [0], {0 : "center"}, 35, "blacksmith", f"{phrases_no_produkt}")
-                                input("")
+                                input("> ")
                             else:
                                 if d.gold >= gold_item1:
                                     #доделать как зделаю инвентарь
                                     thank_phrase = random.choice(dp.blacksmith_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "blacksmith", f"{thank_phrase}")
+                                    input("> ")
 
-                                    item1['name'] = "1, --------"
+                                    item1['name'] = "--------"
                                 else:
                                     phrases_no_gold = random.choice(dp.blacksmith_purchase_no_gold)
                                     d.create_table("info", True, [0], {0 : "center"}, 35, "blacksmith", f"{phrases_no_gold}")
-                                    input("")
+                                    input("> ")
 
                         elif dest == "2":
-                            if item2['name'] == "1, --------":
+                            if item2['name'] == "--------":
                                 phrases_no_produkt = random.choice(dp.blacksmith_phrases_no_product)
                                 d.create_table("info", True, [0], {0 : "center"}, 35, "blacksmith", f"{phrases_no_produkt}")
-                                input("")
+                                input("> ")
                             else:
                                 if d.gold >= gold_item2:
                                     d.gold =- gold_item2
-                                    d.item.append(item1['name'])
+                                    d.item.append(item1['ID'])
                                     thank_phrase = random.choice(dp.blacksmith_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "blacksmith", f"{thank_phrase}")
+                                    input("> ")
 
-                                    item2['name'] = "1, --------"
+                                    item2['name'] = "--------"
                                 else:
                                     phrases_no_gold = random.choice(dp.blacksmith_purchase_no_gold)
                                     d.create_table("info", True, [0], {0 : "center"}, 35, "blacksmith", f"{phrases_no_gold}")
-                                    input("")
+                                    input("> ")
                         elif dest == "3":
-                            if item3['name'] == "1, --------":
+                            if item3['name'] == "--------":
                                 phrases_no_produkt = random.choice(dp.blacksmith_phrases_no_product)
                                 d.create_table("info", True, [0], {0 : "center"}, 35, "blacksmith", f"{phrases_no_produkt}")
-                                input("")
+                                input("> ")
                             else:
                                 if d.gold >= gold_item3:
                                     d.gold =- gold_item3
-                                    d.item.append(item1['name'])
+                                    d.item.append(item1['ID'])
                                     thank_phrase = random.choice(dp.blacksmith_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "blacksmith", f"{thank_phrase}")
+                                    input("> ")
 
-                                    item3['name'] = "1, --------"
+                                    item3['name'] = "--------"
                                 else:
                                     phrases_no_gold = random.choice(dp.blacksmith_purchase_no_gold)
                                     d.create_table("info", True, [0], {0 : "center"}, 35, "blacksmith", f"{phrases_no_gold}")
-                                    input("")
+                                    input("> ")
 
                 elif shop_type == "alchemy":
                     phrases = random.choice(dp.alchemist_phrases)
-                    random_items = random.sample(dp.alchemical_items, 3)
+                    random_items = random.sample(itemd.alchemical_items, 3)
 
                     item1 = random_items[0]
                     item2 = random_items[1]
                     item3 = random_items[2]
 
-                    gold_item1 = random.randint(item1["mingold"], item1["maxgold"])
-                    gold_item2 = random.randint(item2["mingold"], item2["maxgold"])
-                    gold_item3 = random.randint(item3["mingold"], item3["maxgold"])
+                    gold_item1 = random.randint(item1["minGold"], item1["maxGold"])
+                    gold_item2 = random.randint(item2["minGold"], item2["maxGold"])
+                    gold_item3 = random.randint(item3["minGold"], item3["maxGold"])
 
                     d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases}")
                     d.shop = True
@@ -352,56 +356,59 @@ def shop():
                             break
 
                         elif dest == "1":
-                            if item1['name'] == "1, --------":
+                            if item1['name'] == "--------":
                                 phrases_no_produkt = random.choice(dp.alchemist_phrases_no_product)
                                 d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases_no_produkt}")
-                                input("")
+                                input("> ")
                             else:
                                 if d.gold >= gold_item1:
                                     #доделать как зделаю инвентарь
                                     thank_phrase = random.choice(dp.alchemist_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "alchemy", f"{thank_phrase}")
+                                    input("> ")
 
-                                    item1['name'] = "1, --------"
+                                    item1['name'] = "--------"
                                 else:
                                     phrases_no_gold = random.choice(dp.alchemist_purchase_no_gold)
                                     d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases_no_gold}")
-                                    input("")
+                                    input("> ")
 
                         elif dest == "2":
-                            if item2['name'] == "1, --------":
+                            if item2['name'] == "--------":
                                 phrases_no_produkt = random.choice(dp.alchemist_phrases_no_product)
                                 d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases_no_produkt}")
-                                input("")
+                                input("> ")
                             else:
                                 if d.gold >= gold_item2:
                                     d.gold =- gold_item2
                                     d.item.append(item1['name'])
                                     thank_phrase = random.choice(dp.alchemist_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "alchemy", f"{thank_phrase}")
+                                    input("> ")
 
-                                    item2['name'] = "1, --------"
+                                    item2['name'] = "--------"
                                 else:
                                     phrases_no_gold = random.choice(dp.alchemist_purchase_no_gold)
                                     d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases_no_gold}")
-                                    input("")
+                                    input("> ")
                         elif dest == "3":
-                            if item3['name'] == "1, --------":
+                            if item3['name'] == "--------":
                                 phrases_no_produkt = random.choice(dp.alchemist_phrases_no_product)
                                 d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases_no_produkt}")
-                                input("")
+                                input("> ")
                             else:
                                 if d.gold >= gold_item3:
                                     d.gold =- gold_item3
                                     d.item.append(item1['name'])
                                     thank_phrase = random.choice(dp.alchemist_purchase_phrases)
                                     d.create_table("info", True, [0, 3], {0 : "center"}, 35, "alchemy", f"{thank_phrase}")
+                                    input("> ")
 
-                                    item3['name'] = "1, --------"
+                                    item3['name'] = "--------"
                                 else:
                                     phrases_no_gold = random.choice(dp.alchemist_purchase_no_gold)
                                     d.create_table("info", True, [0], {0 : "center"}, 35, "alchemy", f"{phrases_no_gold}")
-                                    input("")
+                                    input("> ")
 
     d.da.stop_shop_music()
     d.da.play_background_music()
