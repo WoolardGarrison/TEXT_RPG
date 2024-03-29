@@ -16,8 +16,8 @@ import DATA.level_data as ld
 
 shop_types = ["firearms", "alchemy"]
 
-#                                                                                                       run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data Trip
-run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips = True, True, False, False, False, False, True, True, False, False, {}, False
+#                                                                                                                 run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data  Trip   Inv
+run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips, inventory = True, True, False, False, False, False, True, True, False, False, {}, False, False
 
 #                                              DP     ManaR  ECAXP
 DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
@@ -30,8 +30,8 @@ name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, l
 #                                                              PM    x  y   E  M   mM  S
 playerMonstronomicon, Px, Py, Effects, mana, maxMana, speed = False, 0, 0, [], 50, 50, 1
 
-#                                          item H  CH  WE1 WE2
-item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""
+#                                            item    H  CH  WE1 WE2
+item, helmet, chestplate, weapon, weapon2 = [2, 4], "", "", "", ""
 
 room_map = []
 

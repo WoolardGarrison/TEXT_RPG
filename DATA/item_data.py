@@ -27,6 +27,7 @@ def HealthPotion_1():
         d.Hp = d.maxHp
     
     d.item.remove(Health_Potion_1["ID"])
+    d.create_table("info", True, None, None, 22, f"HP : {d.Hp} / {d.maxHp}")
 
 
 Health_Potion_2 = {
@@ -45,6 +46,7 @@ def HealthPotion_2():
         d.Hp = d.maxHp
     
     d.item.remove(Health_Potion_2["ID"])
+    d.create_table("info", True, None, None, 22, f"HP : {d.Hp} / {d.maxHp}")
 
 
 Health_Potion_3 = {
@@ -63,6 +65,7 @@ def HealthPotion_3():
         d.Hp = d.maxHp
     
     d.item.remove(Health_Potion_3["ID"])
+    d.create_table("info", True, None, None, 22, f"HP : {d.Hp} / {d.maxHp}")
 
 
 Health_Potion_4 = {
@@ -81,6 +84,7 @@ def HealthPotion_4():
         d.Hp = d.maxHp
     
     d.item.remove(Health_Potion_4["ID"])
+    d.create_table("info", True, None, None, 22, f"HP : {d.Hp} / {d.maxHp}")
 
 
 Health_Potion_5 = {
@@ -99,6 +103,7 @@ def HealthPotion_5():
         d.Hp = d.maxHp
     
     d.item.remove(Health_Potion_5["ID"])
+    d.create_table("info", True, None, None, 22, f"HP : {d.Hp} / {d.maxHp}")
 
 
 # Mana Elixir 1-5
@@ -119,6 +124,7 @@ def ManaElixir_1():
         d.mana = d.maxMana
     
     d.item.remove(Mana_Elixir_1["ID"])
+    d.create_table("info", True, None, None, 22, f"Mana : {d.mana} / {d.maxMana}")
 
 Mana_Elixir_2 = {
     "ID": 6,
@@ -137,6 +143,7 @@ def ManaElixir_2():
         d.mana = d.maxMana
     
     d.item.remove(Mana_Elixir_2["ID"])
+    d.create_table("info", True, None, None, 22, f"Mana : {d.mana} / {d.maxMana}")
 
 Mana_Elixir_3 = {
     "ID": 7,
@@ -154,6 +161,7 @@ def ManaElixir_3():
         d.mana = d.maxMana
     
     d.item.remove(Mana_Elixir_3["ID"])
+    d.create_table("info", True, None, None, 22, f"Mana : {d.mana} / {d.maxMana}")
 
 Mana_Elixir_4 = {
     "ID": 8,
@@ -171,6 +179,7 @@ def ManaElixir_4():
         d.mana = d.maxMana
     
     d.item.remove(Mana_Elixir_4["ID"])
+    d.create_table("info", True, None, None, 22, f"Mana : {d.mana} / {d.maxMana}")
 
 Mana_Elixir_5 = {
     "ID": 9,
@@ -188,6 +197,7 @@ def ManaElixir_5():
         d.mana = d.maxMana
     
     d.item.remove(Mana_Elixir_5["ID"])
+    d.create_table("info", True, None, None, 22, f"Mana : {d.mana} / {d.maxMana}")
 
 
 # Strength Tonic 1-5
@@ -311,11 +321,15 @@ Iron_Helm = {
 alchemical_items = [Health_Potion_1, Health_Potion_2, Health_Potion_3, Health_Potion_4, Health_Potion_5,
                     Mana_Elixir_1, Mana_Elixir_2, Mana_Elixir_3, Mana_Elixir_4, Mana_Elixir_5,
                     Strength_Tonic_1, Strength_Tonic_2, Strength_Tonic_3, Strength_Tonic_4, Strength_Tonic_5]
+
 blacksmith_items = [Iron_Sword, Iron_Dagger, Iron_Shield, Iron_Armor, Iron_Helm]
 
+all_item = [Health_Potion_1, Health_Potion_2, Health_Potion_3, Health_Potion_4, Health_Potion_5,
+            Mana_Elixir_1, Mana_Elixir_2, Mana_Elixir_3, Mana_Elixir_4, Mana_Elixir_5,
+            Strength_Tonic_1, Strength_Tonic_2, Strength_Tonic_3, Strength_Tonic_4, Strength_Tonic_5,
+            Iron_Sword, Iron_Dagger, Iron_Shield, Iron_Armor, Iron_Helm]
 
-
-item_use_functions = {
+potions_use_functions = {
     0: HealthPotion_1,
     1: HealthPotion_2,
     2: HealthPotion_3,
@@ -333,8 +347,8 @@ item_use_functions = {
     14: StrengthTonic_5,
 }
 
-def use_item(item_id):
-    if item_id in item_use_functions:
-        item_use_functions[item_id]()
+def use_potions(potions_id):
+    if potions_id in potions_use_functions:
+        potions_use_functions[potions_id]()
     else:
         print("This item cannot be used.")
