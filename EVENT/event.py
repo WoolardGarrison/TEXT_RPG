@@ -38,96 +38,82 @@ def monster():
     d.da.play_battle_music()
 
     while d.batle:
-        d.create_table("info", True, [0], {0 : "center"}, 25, f"{monster_name}", f"HP : {monster_Hp}", f"DAMAGE : {monster_Damage}")
-
-        d.create_table("info", False, [0, 2], {0 : "center"}, 25, f"{d.name}", f"HP : {d.Hp}", f"DAMAGE : {d.Dm}", f"1, attack {monster_name}", "2, run")
-
+        d.create_table("info", True, [0], {0: "center"}, 25, f"{monster_name}", f"HP : {monster_Hp}", f"DAMAGE : {monster_Damage}")
+        d.create_table("info", False, [0, 2], {0: "center"}, 25, f"{d.name}", f"HP : {d.Hp}", f"DAMAGE : {d.Dm}", f"1, attack {monster_name}", "2, run")
+        
         dest = input("> ")
 
         if dest == "1":
+            damage_multiplier = 2 if d.heroClass == "THIEF" else 1
             if d.heroClass == "SWORDSMAN":
-                monster_Hp = monster_Hp - math.ceil(d.Dm * monster_PResist)
-            elif d.heroClass == "THIEF":
-                monster_Hp = monster_Hp - math.ceil((d.Dm * monster_PResist) *2)
+                monster_Hp -= math.ceil(d.Dm * monster_PResist)
             elif d.heroClass == "MAGICIAN":
-                monster_Hp = monster_Hp - math.ceil(d.Dm * monster_MResist)
+                monster_Hp -= math.ceil(d.Dm * monster_MResist)
             elif d.heroClass == "NULL":
-                monster_Hp = monster_Hp - 5 - d.Dm
+                monster_Hp -= 5 + d.Dm * damage_multiplier
             
-            if monster_Hp < 0:
-                monster_Hp = 0
-
-            d.create_table("info", True, None, {0 : "center"}, 45, f"you hit the {monster_name}, he has {monster_Hp} HP" )
+            monster_Hp = max(0, monster_Hp)
+            d.create_table("info", True, None, {0: "center"}, 45, f"you hit the {monster_name}, he has {monster_Hp} HP")
             input("> ")
 
         elif dest == "2":
             if random.random() > monster_agresia or d.speed > monster_speed:
-                d.create_table("info", True, [0], {0 : "center"}, 25, "you runs away", "gold : 0", "XP : 0")
+                d.create_table("info", True, [0], {0: "center"}, 25, "you runs away", "gold : 0", "XP : 0")
                 d.batle = False
                 input("")
                 break
             else:
-                d.create_table("info", True, None, {0 : "center"}, 25, "you couldn't escape" )
+                d.create_table("info", True, None, {0: "center"}, 25, "you couldn't escape")
                 input("> ")
         
         if monster_Hp <= 0:
-
             if d.EarningCoinsAndXP:
-                monster_Xp = monster_Xp * 2
-                monster_Coin = monster_Coin * 2
-
-                d.Xp = d.Xp + monster_Xp
-                d.gold = d.gold + monster_Coin
-                d.create_table("info", True, [0], {0 : "center"}, 25, f"VICTORY", f"gold : {monster_Coin}", f"XP : {d.Xp}/{d.XpToLv}")
-
+                monster_Xp *= 2
+                monster_Coin *= 2
+                d.Xp += monster_Xp
+                d.gold += monster_Coin
+                d.create_table("info", True, [0], {0: "center"}, 25, f"VICTORY", f"gold : {monster_Coin}", f"XP : {d.Xp}/{d.XpToLv}")
                 if d.Xp >= d.XpToLv:
-                    d.Lv = d.Lv + 1
-                    d.Xp = d.Xp - d.XpToLv
-                    d.XpToLv = d.XpToLv + 100
-
-                    
-                    d.maxHp = d.maxHp + 50
+                    d.Lv += 1
+                    d.Xp -= d.XpToLv
+                    d.XpToLv += 100
+                    d.maxHp += 50
                     d.Hp = d.maxHp
-                    d.improvementStar = d.improvementStar + 1
-                    d.create_table("info", False, [0], {0 : "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f"improvement star : {d.improvementStar}")
+                    d.improvementStar += 1
+                    d.create_table("info", False, [0], {0: "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f" Damege : {d.Dm}", f"improvement star : {d.improvementStar}")
                 input("> ")
                 d.batle = False
                 break
             else:
-
-                d.Xp = d.Xp + monster_Xp
-                d.gold = d.gold + monster_Coin
-
-                d.create_table("info", True, [0], {0 : "center"}, 25, f"VICTORY", f"gold : {monster_Coin}", f"XP : {monster_Xp}")
-
+                d.Xp += monster_Xp
+                d.gold += monster_Coin
+                d.create_table("info", True, [0], {0: "center"}, 25, f"VICTORY", f"gold : {monster_Coin}", f"XP : {monster_Xp}")
                 if d.Xp >= d.XpToLv:
-                    d.Lv = d.Lv + 1
-                    d.Xp = d.Xp - d.XpToLv
+                    d.Lv += 1
+                    d.Xp -= d.XpToLv
                     d.XpToLv = math.ceil(d.XpToLv * 1.5)
-
                     d.maxHp = math.ceil(d.maxHp * 1.5)
-                    d.improvementStar = d.improvementStar + 1
-                    d.create_table("info", False, [0], {0 : "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f"improvement star : {d.improvementStar}")
+                    d.improvementStar += 1
+                    d.create_table("info", False, [0], {0: "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f" Damege : {d.Dm}", f"improvement star : {d.improvementStar}")
                 input("> ")
                 d.batle = False
                 break
-                
 
-        if monster_Hp < 12 and random.random() > monster_agresia :
-
-            d.create_table("info", True, [0], {0 : "center"}, 25, "the monster ran away", "gold : 0", "XP : 0")
+        if monster_Hp < 12 and random.random() > monster_agresia:
+            d.create_table("info", True, [0], {0: "center"}, 25, "the monster ran away", "gold : 0", "XP : 0")
             input("> ")
             d.batle = False
             break
 
-        if monster_PDamage == True:
-            d.Hp = d.Hp - math.ceil(monster_Damage * d.PhysicalResistInt)
-        elif monster_MDamage == True:
-            d.Hp = d.Hp - math.ceil(monster_Damage * d.MagicResistInt)
+        if monster_PDamage:
+            d.Hp -= math.ceil(monster_Damage * d.PhysicalResistInt)
+        elif monster_MDamage:
+            d.Hp -= math.ceil(monster_Damage * d.MagicResistInt)
         
-        if d.Hp <=0 :
+        if d.Hp <= 0:
             d.game_over = True
             break
+
     d.da.stop_battle_music()
     d.da.play_background_music()
 
@@ -140,7 +126,7 @@ def visit_shop(shop_type, phrases, items):
     input("> ")
 
     while d.shop:
-        d.create_table("info", True, [0, 3], {0: "center"}, 35, shop_type, *[f"{i + 1}, {item['name']} | {gold_prices[i]} gold" for i, item in enumerate(random_items)], "0, exit")
+        d.create_table("info", True, [0, 3], {0: "center"}, 35, shop_type, *[f"{i + 1}, {item['name']} | {gold_prices[i]} gold" for i, item in enumerate(random_items)], f"GOLD : {d.gold}", "0, exit")
         dest = input("> ")
 
         if dest == "0":

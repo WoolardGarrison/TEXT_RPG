@@ -6,6 +6,7 @@ def clear():
 
 clear()
 
+import random
 import sys
 import time
 import DATA.audio.data_audio as da
@@ -31,7 +32,7 @@ name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, l
 playerMonstronomicon, Px, Py, Effects, mana, maxMana, speed = False, 0, 0, [], 50, 50, 1
 
 #                                            item    H  CH  WE1 WE2
-item, helmet, chestplate, weapon, weapon2 = [2, 4], "", "", "", ""
+item, helmet, chestplate, weapon, weapon2 = [1, 1], "", "", "", ""
 
 room_map = []
 
@@ -52,9 +53,9 @@ logo = [
 
 # Функции сохранения и загрузки данных
 def saveFile():
-    global name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
-           PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
-           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, data, item, \
+    global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, \
+           MagicResistInt, PhysicalResistInt, PoisonResistInt, \
+           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, item, \
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     data = {
@@ -68,10 +69,6 @@ def saveFile():
         "XpToLv": XpToLv,
         "Lv": Lv,
         "DoublePunch": DoublePunch,
-        "MagicResist": MagicResist,
-        "PhysicalResist": PhysicalResist,
-        "PoisonResist": PoisonResist,
-        "ToxinResist": ToxinResist,
         "MagicResistInt": MagicResistInt,
         "PhysicalResistInt": PhysicalResistInt,
         "PoisonResistInt": PoisonResistInt,
@@ -95,8 +92,8 @@ def saveFile():
 
 
 def loadFile():
-    global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
-           PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
+    global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, \
+           MagicResistInt, PhysicalResistInt, PoisonResistInt, \
            ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, item, \
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
@@ -105,8 +102,7 @@ def loadFile():
             data = json.load(f)
 
         # Проверка наличия всех необходимых ключей в загруженных данных
-        required_keys = ["name", "heroClass", "Hp", "maxHp", "gold", "Dm", "Xp", "XpToLv", "Lv", "DoublePunch",
-                         "MagicResist", "PhysicalResist", "PoisonResist", "ToxinResist", "MagicResistInt",
+        required_keys = ["name", "heroClass", "Hp", "maxHp", "gold", "Dm", "Xp", "XpToLv", "Lv", "DoublePunch", "MagicResistInt",
                          "PhysicalResistInt", "PoisonResistInt", "ToxinResistInt", "ManaRecovery",
                          "EarningCoinsAndXP", "improvementStar", "points", "item", "helmet", "chestplate",
                          "weapon", "weapon2", "layer", "Px", "Py"]
@@ -125,10 +121,6 @@ def loadFile():
         XpToLv = data["XpToLv"]
         Lv = data["Lv"]
         DoublePunch = data["DoublePunch"]
-        MagicResist = data["MagicResist"]
-        PhysicalResist = data["PhysicalResist"]
-        PoisonResist = data["PoisonResist"]
-        ToxinResist = data["ToxinResist"]
         MagicResistInt = data["MagicResistInt"]
         PhysicalResistInt = data["PhysicalResistInt"]
         PoisonResistInt = data["PoisonResistInt"]
@@ -316,8 +308,20 @@ def display_map(map_array, player):
         time.sleep(0.08)  # добавим небольшую задержку для лучшей анимации
 
 def loading_animation(imports):
+    animation_symbols = ['|', '-', '-', '-']  # Символы для анимации
     max_length = max(len(module) for module in imports)
     for module in imports:
-        sys.stdout.write(f"\rLoading {module}...{' '*(max_length - len(module))} DONE\n")
+        sys.stdout.write(f"\r| {module}{' '*(max_length - len(module))} ")
         sys.stdout.flush()
-        time.sleep(0.1)  # Увеличиваем задержку до 0.5 секунды
+        for _ in range(5):  # Проходим по всем символам анимации
+            sys.stdout.write(animation_symbols[_ % len(animation_symbols)] + ' ')
+            sys.stdout.flush()
+            time.sleep(0.005)  # Задержка между символами анимации
+            sys.stdout.write('\b')  # Удаляем предыдущий символ анимации
+            sys.stdout.flush()
+        sys.stdout.write('\b\b\b\b\b\b')  # Удаляем анимацию
+        sys.stdout.write(" DONE\n")
+        sys.stdout.flush()
+        time.sleep(random.uniform(0.05, 0.2))  # Случайная задержка от 0.1 до 0.4 секунд
+
+
