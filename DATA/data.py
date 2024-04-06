@@ -15,6 +15,13 @@ import pyautogui
 import ctypes
 import DATA.level_data as ld
 
+# Получение пути к директории AppData\Local
+appdata_dir = os.getenv('LOCALAPPDATA')
+
+# Проверка существования директории TextRPG\gameSAVE, если нет - создать
+save_dir = os.path.join(appdata_dir, 'TextRPG', 'gameSAVE')
+os.makedirs(save_dir, exist_ok=True)
+
 shop_types = ["firearms", "alchemy"]
 
 #                                                                                                                 run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data  Trip   Inv
@@ -89,9 +96,8 @@ def saveFile():
         "Py" : Py,
     }
 
-    with open("save.json", "w") as f:
+    with open(os.path.join(save_dir, "save.json"), "w") as f:
         json.dump(data, f, indent=4)
-
 
 def loadFile():
     global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, \
@@ -100,7 +106,7 @@ def loadFile():
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     try:
-        with open("save.json", "r") as f:
+        with open(os.path.join(save_dir, "save.json"), "r") as f:
             data = json.load(f)
 
         # Проверка наличия всех необходимых ключей в загруженных данных

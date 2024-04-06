@@ -1,5 +1,17 @@
+import os
 import logging
-logging.basicConfig(filename='example.log', level=logging.DEBUG)
+from datetime import datetime
+
+log_folder = 'LOG'
+if not os.path.exists(log_folder):
+    os.makedirs(log_folder)
+
+current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+log_filename = "LOG__{" + current_time + "}__.log"
+
+log_path = os.path.join(log_folder, log_filename)
+logging.basicConfig(filename=log_path, level=logging.DEBUG)
 
 try:
     from DATA.data import clear
@@ -40,8 +52,23 @@ try:
             d.clear()
 
             while d.autors:
+                args_list = [
+                    "0, quit to meny",
+                    "graphic : Fantomm",
+                    "music : Fantomm",
+                    "code : Fantomm",
+                    "plot : Факсянь"
+                ]
 
-                d.create_table("info", True, [0], None, 22, "0, quit to meny", "graphic : Fantomm", "music : Fantomm", "code : Fantomm", "plot : Факсянь")
+                d.create_table(
+                    "info", 
+                    True, 
+                    [0], 
+                    None, 
+                    22,
+                    *args_list
+                )
+
 
                 skip_enter = True
                 autors = False
@@ -391,4 +418,4 @@ try:
 
 except Exception as e:
     # Логирование ошибок
-    logging.error(f'ERORRE : |{str(e)}|', exc_info=True)
+    logging.error(f'ERORRE : |{str(e)}| \n\r', exc_info=True)
