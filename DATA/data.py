@@ -27,6 +27,9 @@ shop_types = ["firearms", "alchemy"]
 #                                                                                                                 run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data  Trip   Inv
 run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips, inventory = True, True, False, False, False, False, True, True, False, False, {}, False, False
 
+#           L
+Language = "RU"
+
 #                                              DP     ManaR  ECAXP
 DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
 

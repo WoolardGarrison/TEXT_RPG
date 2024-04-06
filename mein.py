@@ -38,6 +38,13 @@ try:
     import DATA.data as d
     import EVENT.event as event
 
+    if d.Language == "US":
+        import DATA.Language.US as l
+    elif d.Language == "RU":
+        import DATA.Language.RU as l
+    else:
+        import DATA.Language.US as l
+
 
     d.play_animation(d.logo, 0.3)
     d.time.sleep(1)
@@ -52,21 +59,13 @@ try:
             d.clear()
 
             while d.autors:
-                args_list = [
-                    "0, quit to meny",
-                    "graphic : Fantomm",
-                    "music : Fantomm",
-                    "code : Fantomm",
-                    "plot : Факсянь"
-                ]
-
                 d.create_table(
                     "info", 
                     True, 
                     [0], 
                     None, 
                     22,
-                    *args_list
+                    *l.autors
                 )
 
 
@@ -78,7 +77,14 @@ try:
                 if choiceAutors == "0":
                     break
 
-            d.create_table("info", True, None, None, 22, "1, new game", "2, load game", "3, autors", "0, quit game")
+            d.create_table(
+                "info",
+                True,
+                None,
+                None,
+                22,
+                l.meny
+            )
 
             skip_enter = False
 
@@ -87,10 +93,29 @@ try:
 
                 if else_choice == "1":
                     while d.creating_hero:
+
                         d.time.sleep(0.1)
-                        d.name = input("enter your name\n> ")
+
+                        d.create_table(
+                            "info",
+                            True,
+                            None,
+                            None,
+                            22,
+                            l.name
+                        )
+                        d.name = input("> ")
+
                         if len(d.name) > 7:
-                            print("!!name is too long, maximum length 7 characters!!")
+                            d.create_table(
+                                "error",
+                                True,
+                                None,
+                                None,
+                                22,
+                                l.namaIsLong
+                            )
+
                         elif d.name == "NULL":
                             d.name = " "
 
@@ -100,23 +125,40 @@ try:
                             break
                         else:
                             while d.creating_hero:
-                                d.create_table("info", True, [0], {0:"center"}, 22, "class", "1, magician \info 'q'", "2, thief \info 'w'", "3, swordsman \info 'e'")
+                                d.create_table(
+                                    "info",
+                                    True,
+                                    [0],
+                                    {0:"center"},
+                                    22,
+                                    *l.classTable
+                                
+                                )
+
                                 classChoice = input("> ")
 
                                 if classChoice == "q":
-                                    d.create_table("info", True, [0, 1], {0:"center"}, 22, "magician", "0, quit to meny", "resistance to magic", "mana recovery rate++", "HP : 160", "damage : 15")
-                                    if input("> ") == "0":
-                                        pass
+                                    d.create_table(
+                                        "info",
+                                        True,
+                                        [0],
+                                        {0:"center"},
+                                        22,
+                                        *l.magicianInfo
+                                    )
 
                                 elif classChoice == "w":
-                                    d.create_table("info", True, [0, 1], {0:"center"}, 22, "thief", "0, quit to meny", "poison resistance", "toxin resistance", "higher likelihood of", "  earning coins and XP", "HP : 140", "damage : 10 + DP")
-                                    if input("> ") == "0":
-                                        pass
+                                    d.create_table(
+                                        "info",
+                                        True,
+                                        [0],
+                                        {0:"center"},
+                                        22,
+                                        *l.thiefInfo
+                                    )
 
                                 elif classChoice == "e":
                                     d.create_table("info", True, [0, 1], {0:"center"}, 22, "swordsman", "0, quit to meny", "resistance to ", "  physical attacks", "HP : 190", "damage : 30")
-                                    if input("> ") == "0":
-                                        pass
 
                                 elif classChoice == "1":
 
