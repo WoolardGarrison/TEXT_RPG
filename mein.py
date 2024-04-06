@@ -2,7 +2,10 @@ import logging
 logging.basicConfig(filename='example.log', level=logging.DEBUG)
 
 try:
-    from DATA.data import clear, loading_animation, open_console_fullscreen, set_font_size
+    from DATA.data import clear
+    clear()
+
+    from DATA.data import loading_animation, open_console_fullscreen, set_font_size
 
     imports_list = [
         "DATA.data", "EVENT.event", "sys", "time", "DATA.audio.data_audio",
@@ -16,9 +19,8 @@ try:
         "glob", "shutil", "zipfile", "argparse", "configparser"
     ]
 
-    clear()
     open_console_fullscreen()
-    set_font_size(23)
+    set_font_size(22)
     loading_animation(imports_list)
 
     import DATA.data as d
@@ -28,6 +30,7 @@ try:
     d.play_animation(d.logo, 0.3)
     d.time.sleep(1)
 
+    set_font_size(23)
 
     while d.run:
 
