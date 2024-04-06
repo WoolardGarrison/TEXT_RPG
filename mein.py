@@ -212,7 +212,7 @@ try:
 
                         d.display_map(d.ld.layerMapGUI_1, player)
 
-                        d.create_table("info", False, None, None, 22, "where do you want to go? (W|A|S|D| Q-qute)")
+                        d.create_table("info", False, [0], None, 22, "where do you want to go? (W|A|S|D|)", "Q-qute", "I-inventory", "M-monstronomicon")
                         move = input("> ")
 
                         if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
@@ -283,7 +283,7 @@ try:
 
                         d.display_map(d.ld.layerMapGUI_2, player)
 
-                        d.create_table("info", False, None, None, 29, "where do you want to go? (W|A|S|D|Q-qute|I-inventory|M-monstronomicon)")
+                        d.create_table("info", False, [0], None, 22, "where do you want to go? (W|A|S|D|)", "Q-qute", "I-inventory", "M-monstronomicon")
                         move = input("> ")
 
                         if move.lower() == 'w' and d.ld.layerMapGUI_1[player.y - 1][player.x] != '*':
@@ -388,4 +388,4 @@ try:
 
 except Exception as e:
     # Логирование ошибок
-    logging.error(f'Произошла ошибка: {str(e)}', exc_info=True)
+    logging.error(f'ERORRE : |{str(e)}|', exc_info=True)
