@@ -83,7 +83,7 @@ try:
                 None,
                 None,
                 22,
-                l.meny
+                *l.meny
             )
 
             skip_enter = False
@@ -100,9 +100,9 @@ try:
                             "info",
                             True,
                             None,
-                            None,
+                            {0: "center"},
                             22,
-                            l.name
+                            *l.name
                         )
                         d.name = input("> ")
 
@@ -113,7 +113,7 @@ try:
                                 None,
                                 None,
                                 22,
-                                l.namaIsLong
+                                *l.namaIsLong
                             )
 
                         elif d.name == "NULL":
@@ -132,7 +132,6 @@ try:
                                     {0:"center"},
                                     22,
                                     *l.classTable
-                                
                                 )
 
                                 classChoice = input("> ")
@@ -146,6 +145,7 @@ try:
                                         22,
                                         *l.magicianInfo
                                     )
+                                    input("> ")
 
                                 elif classChoice == "w":
                                     d.create_table(
@@ -156,9 +156,18 @@ try:
                                         22,
                                         *l.thiefInfo
                                     )
+                                    input("> ")
 
                                 elif classChoice == "e":
-                                    d.create_table("info", True, [0, 1], {0:"center"}, 22, "swordsman", "0, quit to meny", "resistance to ", "  physical attacks", "HP : 190", "damage : 30")
+                                    d.create_table(
+                                        "info",
+                                        True,
+                                        [0, 1],
+                                        {0:"center"},
+                                        22,
+                                        *l.swordsmanInfo
+                                    )
+                                    input("> ")
 
                                 elif classChoice == "1":
 
@@ -221,7 +230,14 @@ try:
 
                     d.loadFile()
                     if not d.errore_load:
-                        d.create_table("info", True, None, None, 22, f"welcome back, {d.name}")
+                        d.create_table(
+                            "info",
+                            True,
+                            None,
+                            {0 : "center"},
+                            26,
+                            l.welcom + d.name
+                        )
 
                         input("> ")
 
@@ -256,7 +272,7 @@ try:
 
             d.saveFile()
 
-            d.create_table("info", False, [1], None, 22, "0, quit to menu", "1, to start", f"name : {d.name}", f"class : {d.heroClass}", f"HP : {d.Hp}", f"gold : {d.gold}", f"XP : {d.Xp} / {d.XpToLv}", f"Lv : {d.Lv}")
+            d.create_table("info", False, [1], None, 22, "[0] quit to menu", "[1] to start", f"name : {d.name}", f"class : {d.heroClass}", f"HP : {d.Hp}", f"gold : {d.gold}", f"XP : {d.Xp} / {d.XpToLv}", f"Lv : {d.Lv}")
 
             d.time.sleep(0.1)
             dest = input("> ")

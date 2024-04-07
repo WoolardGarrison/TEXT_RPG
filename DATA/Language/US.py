@@ -1,3 +1,5 @@
+import DATA.data as d
+
 
 autors = [
     "[0] quit to meny",
@@ -46,3 +48,13 @@ thiefInfo = [
      "HP : 140",
      "damage : 10 + DP"
 ]
+
+swordsmanInfo =[
+    "swordsman",
+    "resistance to ",
+    "  physical attacks",
+    "HP : 190",
+    "damage : 30"
+]
+
+welcom = "welcome back, "
