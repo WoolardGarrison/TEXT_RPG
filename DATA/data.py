@@ -25,10 +25,10 @@ os.makedirs(save_dir, exist_ok=True)
 shop_types = ["firearms", "alchemy"]
 
 #                                                                                                                 run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data  Trip   Inv
-run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips, inventory = True, True, False, False, False, False, True, True, False, False, {}, False, False
+run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips, inventory, = True, True, False, False, False, False, True, True, False, False, {}, False, False
 
-#           L
-Language = "RU"
+#            L 
+Language = "RU" 
 
 #                                              DP     ManaR  ECAXP
 DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
@@ -49,18 +49,27 @@ room_map = []
 hdl = ctypes.windll.kernel32.GetStdHandle(-11)
 
 logo = [
-"                                                                                                                                                                                  ",
-"      ____________________                                                                                                                                                        ",
-"     /                   /|      ▄▄▄█████▓ █     █░ ██▓ ██▓     ██▓  ▄████  ██░ ██ ▄▄▄█████▓    ▄████▄   ██░ ██  ██▀███   ▒█████   ███▄    █  ██▓ ▄████▄   ██▓    ▓█████   ██████ ",
-"    / /  ¯¯¯¯¯¯¯¯¯¯¯  / //|      ▓  ██▒ ▓▒▓█░ █ ░█░▓██▒▓██▒    ▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▒██▀ ▀█  ▓██░ ██▒▓██ ▒ ██▒▒██▒  ██▒ ██ ▀█   █ ▓██▒▒██▀ ▀█  ▓██▒    ▓█   ▀ ▒██    ▒ ",
-"   /_/_/_____T_____/_/_// |      ▒ ▓██░ ▒░▒█░ █ ░█ ▒██▒▒██░    ▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▒▓█    ▄ ▒██▀▀██░▓██ ░▄█ ▒▒██░  ██▒▓██  ▀█ ██▒▒██▒▒▓█    ▄ ▒██░    ▒███   ░ ▓██▄   ",
-"  / / /      C    / / //  /      ░ ▓██▓ ░ ░█░ █ ░█ ░██░▒██░    ░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒▓▓▄ ▄██▒░▓█ ░██ ▒██▀▀█▄  ▒██   ██░▓██▒  ▐▌██▒░██░▒▓▓▄ ▄██▒▒██░    ▒▓█  ▄   ▒   ██▒",
-" / /  ___________  / //  /         ▒██▒ ░ ░░██▒██▓ ░██░░██████▒░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒ ▓███▀ ░░▓█▒░██▓░██▓ ▒██▒░ ████▓▒░▒██░   ▓██░░██░▒ ▓███▀ ░░██████▒░▒████▒▒██████▒▒",
-"/___________________//  /          ▒ ░░   ░ ▓░▒ ▒  ░▓  ░ ▒░▓  ░░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ░▒ ▒  ░ ▒ ░░▒░▒░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ░▓  ░ ░▒ ▒  ░░ ▒░▓  ░░░ ▒░ ░▒ ▒▓▒ ▒ ░",
-"|═══════════════════|  /             ░      ▒ ░ ░   ▒ ░░ ░ ▒  ░ ▒ ░  ░   ░  ▒ ░▒░ ░    ░         ░  ▒    ▒ ░▒░ ░  ░▒ ░ ▒░  ░ ▒ ▒░ ░ ░░   ░ ▒░ ▒ ░  ░  ▒   ░ ░ ▒  ░ ░ ░  ░░ ░▒  ░ ░",
-"|═══════════════════| /            ░        ░   ░   ▒ ░  ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░         ░  ░░ ░  ░░   ░ ░ ░ ░ ▒     ░   ░ ░  ▒ ░░          ░ ░      ░   ░  ░  ░  ",
-"|═══════════════════|/                        ░     ░      ░  ░ ░        ░  ░  ░  ░            ░ ░       ░  ░  ░   ░         ░ ░           ░  ░  ░ ░          ░  ░   ░  ░      ░  ",
-"¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯                                                                          ░                                                 ░                                ",
+    "                                                                                                                                                                                  ",
+    "      ____________________                                                                                                                                                        ",
+    "     /                   /|      ▄▄▄█████▓ █     █░ ██▓ ██▓     ██▓  ▄████  ██░ ██ ▄▄▄█████▓    ▄████▄   ██░ ██  ██▀███   ▒█████   ███▄    █  ██▓ ▄████▄   ██▓    ▓█████   ██████ ",
+    "    / /  ¯¯¯¯¯¯¯¯¯¯¯  / //|      ▓  ██▒ ▓▒▓█░ █ ░█░▓██▒▓██▒    ▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▒██▀ ▀█  ▓██░ ██▒▓██ ▒ ██▒▒██▒  ██▒ ██ ▀█   █ ▓██▒▒██▀ ▀█  ▓██▒    ▓█   ▀ ▒██    ▒ ",
+    "   /_/_/_____T_____/_/_// |      ▒ ▓██░ ▒░▒█░ █ ░█ ▒██▒▒██░    ▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▒▓█    ▄ ▒██▀▀██░▓██ ░▄█ ▒▒██░  ██▒▓██  ▀█ ██▒▒██▒▒▓█    ▄ ▒██░    ▒███   ░ ▓██▄   ",
+    "  / / /      C    / / //  /      ░ ▓██▓ ░ ░█░ █ ░█ ░██░▒██░    ░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒▓▓▄ ▄██▒░▓█ ░██ ▒██▀▀█▄  ▒██   ██░▓██▒  ▐▌██▒░██░▒▓▓▄ ▄██▒▒██░    ▒▓█  ▄   ▒   ██▒",
+    " / /  ___________  / //  /         ▒██▒ ░ ░░██▒██▓ ░██░░██████▒░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒ ▓███▀ ░░▓█▒░██▓░██▓ ▒██▒░ ████▓▒░▒██░   ▓██░░██░▒ ▓███▀ ░░██████▒░▒████▒▒██████▒▒",
+    "/___________________//  /          ▒ ░░   ░ ▓░▒ ▒  ░▓  ░ ▒░▓  ░░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ░▒ ▒  ░ ▒ ░░▒░▒░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ░▓  ░ ░▒ ▒  ░░ ▒░▓  ░░░ ▒░ ░▒ ▒▓▒ ▒ ░",
+    "|═══════════════════|  /             ░      ▒ ░ ░   ▒ ░░ ░ ▒  ░ ▒ ░  ░   ░  ▒ ░▒░ ░    ░         ░  ▒    ▒ ░▒░ ░  ░▒ ░ ▒░  ░ ▒ ▒░ ░ ░░   ░ ▒░ ▒ ░  ░  ▒   ░ ░ ▒  ░ ░ ░  ░░ ░▒  ░ ░",
+    "|═══════════════════| /            ░        ░   ░   ▒ ░  ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░         ░  ░░ ░  ░░   ░ ░ ░ ░ ▒     ░   ░ ░  ▒ ░░          ░ ░      ░   ░  ░  ░  ",
+    "|═══════════════════|/                        ░     ░      ░  ░ ░        ░  ░  ░  ░            ░ ░       ░  ░  ░   ░         ░ ░           ░  ░  ░ ░          ░  ░   ░  ░      ░  ",
+    "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯                                                                          ░                                                 ░                                ",
+]
+
+text_rpg_logo = [
+    "████████╗███████╗██╗░░██╗████████╗  ██████╗░██████╗░░██████╗░",
+    "╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝  ██╔══██╗██╔══██╗██╔════╝░",
+    "░░░██║░░░█████╗░░░╚███╔╝░░░░██║░░░  ██████╔╝██████╔╝██║░░██╗░",
+    "░░░██║░░░██╔══╝░░░██╔██╗░░░░██║░░░  ██╔══██╗██╔═══╝░██║░░╚██╗",
+    "░░░██║░░░███████╗██╔╝╚██╗░░░██║░░░  ██║░░██║██║░░░░░╚██████╔╝",
+    "░░░╚═╝░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░  ╚═╝░░╚═╝╚═╝░░░░░░╚═════╝░",
 ]
 
 # Функции сохранения и загрузки данных
@@ -209,7 +218,8 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
                         current_line = word + " "
                 lines.append(current_line)
                 for line in lines:
-                    print("|| {:<{width}} ||".format(line.strip(), width=table_width))
+                    formatted_line = " ".join(line.strip().split())
+                    print("|| {:<{width}} ||".format(formatted_line, width=table_width))
                     da.play_sound_print()  # проигрываем звук после вывода каждой строки
             else:
                 if alignment is not None and index in alignment:
@@ -240,7 +250,8 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
                         current_line = word + " "
                 lines.append(current_line)
                 for line in lines:
-                    print("!!! {:<{width}} !!!".format(line.strip(), width=table_width))
+                    formatted_line = " ".join(line.strip().split())
+                    print("!!! {:<{width}} !!!".format(formatted_line, width=table_width))
                     da.play_sound_print()
             else:
                 if alignment is not None and index in alignment:
@@ -262,6 +273,7 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
     elif style == "error":
         separator_down_error()
     da.play_sound_print()
+
 
 def play_animation(frames, delay=0.3):
     clear()

@@ -37,13 +37,14 @@ try:
 
     import DATA.data as d
     import EVENT.event as event
+    import DATA.Language as l
 
-    if d.Language == "US":
-        import DATA.Language.US as l
+    if d.Language == "EN":
+        l.i18n.set('locale', 'en')
     elif d.Language == "RU":
-        import DATA.Language.RU as l
+        l.i18n.set('locale', 'ru')
     else:
-        import DATA.Language.US as l
+        l.i18n.set('locale', 'en')
 
 
     d.play_animation(d.logo, 0.3)
@@ -65,7 +66,11 @@ try:
                     [0], 
                     None, 
                     22,
-                    *l.autors
+                    l.i18n.t('exit_menu'),
+                    l.i18n.t('graphics'),
+                    l.i18n.t('music'),
+                    l.i18n.t('code'),
+                    l.i18n.t('plot'),
                 )
 
 
@@ -83,7 +88,10 @@ try:
                 None,
                 None,
                 22,
-                *l.meny
+                l.i18n.t('new_game'),
+                l.i18n.t('load_game'),
+                l.i18n.t('authors'),
+                l.i18n.t('exit_game'),
             )
 
             skip_enter = False
@@ -102,7 +110,7 @@ try:
                             None,
                             {0: "center"},
                             22,
-                            *l.name
+                            l.i18n.t('enter_name'),
                         )
                         d.name = input("> ")
 
@@ -113,8 +121,9 @@ try:
                                 None,
                                 None,
                                 22,
-                                *l.namaIsLong
+                                l.i18n.t('name_too_long'),
                             )
+                            input("> ")
 
                         elif d.name == "NULL":
                             d.name = " "
@@ -130,8 +139,11 @@ try:
                                     True,
                                     [0],
                                     {0:"center"},
-                                    22,
-                                    *l.classTable
+                                    26,
+                                    l.i18n.t('class'),
+                                    l.i18n.t('magician_button'),
+                                    l.i18n.t('thief_button'),
+                                    l.i18n.t('swordsman_button'),
                                 )
 
                                 classChoice = input("> ")
@@ -140,10 +152,14 @@ try:
                                     d.create_table(
                                         "info",
                                         True,
-                                        [0],
+                                        [0, 2],
                                         {0:"center"},
                                         22,
-                                        *l.magicianInfo
+                                        l.i18n.t('magician'),
+                                        l.i18n.t('magician_resistance'),
+                                        l.i18n.t('magician_mana'),
+                                        l.i18n.t('magician_hp'),
+                                        l.i18n.t('magician_damage'),
                                     )
                                     input("> ")
 
@@ -151,10 +167,15 @@ try:
                                     d.create_table(
                                         "info",
                                         True,
-                                        [0],
+                                        [0, 3],
                                         {0:"center"},
                                         22,
-                                        *l.thiefInfo
+                                        l.i18n.t('thief'),
+                                        l.i18n.t('thief_poison_resistance'),
+                                        l.i18n.t('thief_toxin_resistance'),
+                                        l.i18n.t('thief_rewards'),
+                                        l.i18n.t('thief_hp'),
+                                        l.i18n.t('thief_damage'),
                                     )
                                     input("> ")
 
@@ -165,7 +186,10 @@ try:
                                         [0, 1],
                                         {0:"center"},
                                         22,
-                                        *l.swordsmanInfo
+                                        l.i18n.t('swordsman'),
+                                        l.i18n.t('swordsman_physical_resistance'),
+                                        l.i18n.t('swordsman_hp'),
+                                        l.i18n.t('swordsman_damage'),
                                     )
                                     input("> ")
 
@@ -236,7 +260,7 @@ try:
                             None,
                             {0 : "center"},
                             26,
-                            l.welcom + d.name
+                            l.i18n.t('welcome') + d.name,
                         )
 
                         input("> ")
@@ -251,28 +275,25 @@ try:
                     quit()
 
         while d.play:
-            d.clear()
-            print("\n████████╗███████╗██╗░░██╗████████╗  ██████╗░██████╗░░██████╗░")
-            d.da.play_sound_print2()
-            d.time.sleep(0.2)
-            print("╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝  ██╔══██╗██╔══██╗██╔════╝░")
-            d.da.play_sound_print2()
-            d.time.sleep(0.2)
-            print("░░░██║░░░█████╗░░░╚███╔╝░░░░██║░░░  ██████╔╝██████╔╝██║░░██╗░")
-            d.da.play_sound_print2()
-            d.time.sleep(0.2)
-            print("░░░██║░░░██╔══╝░░░██╔██╗░░░░██║░░░  ██╔══██╗██╔═══╝░██║░░╚██╗")
-            d.da.play_sound_print2()
-            d.time.sleep(0.2)
-            print("░░░██║░░░███████╗██╔╝╚██╗░░░██║░░░  ██║░░██║██║░░░░░╚██████╔╝")
-            d.da.play_sound_print2()
-            d.time.sleep(0.2)
-            print("░░░╚═╝░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░  ╚═╝░░╚═╝╚═╝░░░░░░╚═════╝░")
-            d.da.play_sound_print2()
+            d.play_animation(d.text_rpg_logo, 0.2)
 
             d.saveFile()
 
-            d.create_table("info", False, [1], None, 22, "[0] quit to menu", "[1] to start", f"name : {d.name}", f"class : {d.heroClass}", f"HP : {d.Hp}", f"gold : {d.gold}", f"XP : {d.Xp} / {d.XpToLv}", f"Lv : {d.Lv}")
+            d.create_table(
+                "info",
+                False, 
+                [1],
+                None,
+                22,
+                l.i18n.t('exit_menu'),
+                l.i18n.t('start_game'),
+                f"{l.i18n.t('player_name')} {d.name}",
+                f"{l.i18n.t('class')} : {d.heroClass}",
+                f"HP : {d.Hp}",
+                f"{l.i18n.t('player_gold')} : {d.gold}",
+                f"XP : {d.Xp} / {d.XpToLv}",
+                f"Lv : {d.Lv}"
+            )
 
             d.time.sleep(0.1)
             dest = input("> ")
