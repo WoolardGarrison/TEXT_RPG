@@ -45,10 +45,13 @@ def monster():
 
         if dest == "1":
             damage_multiplier = 2 if d.heroClass == "THIEF" else 1
+
             if d.heroClass == "SWORDSMAN":
-                monster_Hp -= math.ceil(d.Dm * monster_PResist)
+                monster_Hp -= math.ceil((d.Dm * damage_multiplier) * monster_PResist)
+            elif d.heroClass == "THIEF":
+                monster_Hp -= math.ceil((d.Dm * damage_multiplier) * monster_PResist)
             elif d.heroClass == "MAGICIAN":
-                monster_Hp -= math.ceil(d.Dm * monster_MResist)
+                monster_Hp -= math.ceil((d.Dm * damage_multiplier) * monster_MResist)
             elif d.heroClass == "NULL":
                 monster_Hp -= 5 + d.Dm * damage_multiplier
             
@@ -76,11 +79,12 @@ def monster():
                 if d.Xp >= d.XpToLv:
                     d.Lv += 1
                     d.Xp -= d.XpToLv
-                    d.XpToLv += 100
-                    d.maxHp += 50
+                    d.XpToLv = math.ceil(d.XpToLv * 1.5)
+                    d.maxHp = math.ceil(d.maxHp * 1.5)
                     d.Hp = d.maxHp
                     d.improvementStar += 1
-                    d.create_table("info", False, [0], {0: "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f" Damege : {d.Dm}", f"improvement star : {d.improvementStar}")
+                    d.Dm += 5
+                    d.create_table("info", False, [0], {0: "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f"Damege : {d.Dm}", f"improvement star : {d.improvementStar}")
                 input("> ")
                 d.batle = False
                 break
@@ -94,7 +98,8 @@ def monster():
                     d.XpToLv = math.ceil(d.XpToLv * 1.5)
                     d.maxHp = math.ceil(d.maxHp * 1.5)
                     d.improvementStar += 1
-                    d.create_table("info", False, [0], {0: "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f" Damege : {d.Dm}", f"improvement star : {d.improvementStar}")
+                    d.Dm += 5
+                    d.create_table("info", False, [0], {0: "center"}, 25, f"NEW LEVEL", f"HP : {d.maxHp}", f"XP : {d.Xp}/{d.XpToLv}", f"Damege : {d.Dm}", f"improvement star : {d.improvementStar}")
                 input("> ")
                 d.batle = False
                 break
