@@ -37,7 +37,7 @@ DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
 MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
 
 #                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   !map
-name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 50, 0, 0, 0, 1, True
+name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 50, 0, 0, 0, 1, False
 #                                                              PM    x  y   E  M   mM  S
 playerMonstronomicon, Px, Py, Effects, mana, maxMana, speed = False, 0, 0, [], 50, 50, 1
 
