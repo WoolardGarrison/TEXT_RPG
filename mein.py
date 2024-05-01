@@ -315,9 +315,9 @@ try:
                     player = d.Player(d.Px, d.Py)
 
                     while d.trips:
-                        if d.Hp <= 0:
+                        if d.game_over:
                             d.trips = False
-                            d.game_over = True
+                            break
 
                         d.display_map(d.ld.layerMapGUI_1, player)
 
@@ -386,9 +386,9 @@ try:
                     player = d.Player(d.Px, d.Py)
 
                     while d.trips:
-                        if d.Hp <= 0:
+                        if d.game_over:
                             d.trips = False
-                            d.game_over = True
+                            break
 
                         d.display_map(d.ld.layerMapGUI_2, player)
 
@@ -489,7 +489,7 @@ try:
                         pass
                     
         while d.game_over:
-            d.create_table("info", False, [0, 2], {0 : "center", 1 : "center"}, 25, f"{d.name}", f"point : {d.points}", f"HP : {d.maxHp}", f"damage : {d.Dm}", f"gold : {d.gold}", f"Lv : {d.Lv}")
+            d.create_table("info", True, [0, 2], {0 : "center", 1 : "center"}, 25, f"{d.name}", f"point : {d.points}", f"HP : {d.maxHp}", f"damage : {d.Dm}", f"gold : {d.gold}", f"Lv : {d.Lv}")
             input("> ")
             d.play = False
             d.meny = True
