@@ -15,6 +15,12 @@ import pyautogui
 import ctypes
 import DATA.level_data as ld
 
+# Получаем абсолютный путь к текущему скрипту
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Формируем путь к файлу me.py
+openInventory_path = os.path.join(current_directory, 'EVENT', 'openInventory.py')
+
 # Получение пути к директории AppData\Local
 appdata_dir = os.getenv('LOCALAPPDATA')
 

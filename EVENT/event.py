@@ -9,6 +9,7 @@ import DATA.data_persons as dp
 import DATA.data as d
 import random
 import DATA.item_data as itemd
+import subprocess
 
 chances = [70, 30]
 
@@ -224,8 +225,7 @@ def randomEvent(monstr_max):
 def openInventory():
     d.clear()
     d.inventory = True
-
-    input("> ")
+    subprocess.Popen(['start', 'cmd', '/k', 'python', 'EVENT\openInventory.py'])
 
 def start_game(leyer, player):
     if leyer == 1:

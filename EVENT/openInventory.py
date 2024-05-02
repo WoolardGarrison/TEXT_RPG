@@ -12,6 +12,9 @@ if __name__ == "__main__":
 
 item_ids = d.item
 
+d.open_console_fullscreen()
+d.set_font_size(23)
+
 while d.inventory:
 
     matching_classes_names = []
@@ -38,8 +41,21 @@ while d.inventory:
     if choice.isdigit() and int(choice) in matching_classes:
         chosen_item = matching_classes[int(choice)]
         
-        if chosen_item["type"] == 1:
-            itemD.use_potions(chosen_item["ID"])
+        while (True):
+            d.create_table("info", True, None, {0 : "center"}, 35, "[1] INFO | [2] USE | [3] BACK" )
+            choice = input("> ")
+            if choice == "1":
+                d.create_table("info", True, None, {0 : "center"}, 22, chosen_item["info"] )
 
-        input("> ")
+            if choice == "2":
+                if chosen_item["type"] == 1:
+                    itemD.use_potions(chosen_item["ID"])
+                input("> ")
+                break
+            
+            if choice == "3":
+                break
 
+            input("> ")
+    elif choice == "0":
+        break
