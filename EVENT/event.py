@@ -9,7 +9,6 @@ import DATA.data_persons as dp
 import DATA.data as d
 import random
 import DATA.item_data as itemd
-import subprocess
 
 chances = [70, 30]
 
@@ -112,9 +111,10 @@ def monster():
             break
 
         if monster_PDamage:
-            d.Hp -= math.ceil(monster_Damage * d.PhysicalResistInt)
+            d.Hp -= math.ceil(((monster_Damage * (1 - d.PhysicalResistInt)) * (1 - d.MagicPhysicalResistInt)) * (1 - (d.helmetResistInt + d.chestplateResistInt + d.shieldResistInt)))
+            
         elif monster_MDamage:
-            d.Hp -= math.ceil(monster_Damage * d.MagicResistInt)
+            d.Hp -= math.ceil(((monster_Damage * (1 - d.MagicResistInt)) * (1 - d.MagicPhysicalResistInt)) * (1 - (d.helmetResistInt + d.chestplateResistInt + d.shieldResistInt)))
         
         if d.Hp <= 0:
             d.game_over = True
@@ -225,7 +225,113 @@ def randomEvent(monstr_max):
 def openInventory():
     d.clear()
     d.inventory = True
-    subprocess.Popen(['start', 'cmd', '/k', 'python', 'EVENT\openInventory.py'])
+    item_ids = d.item
+
+    while d.inventory:
+
+        matching_classes_names = []
+        matching_classes = {}
+
+        item_index = 1
+
+        # Перебираем все ID предметов
+        for item_id in item_ids:
+            for class_item in itemd.all_item:
+                if item_id == class_item["ID"]:
+                    matching_classes[item_index] = class_item
+
+                    matching_classes_names.append(f"{class_item['name']} | {item_index}")
+
+                    item_index += 1
+                    break
+
+        d.create_table("info", True, [0], {0 : "center"}, 45, "inventory", *matching_classes_names )
+        d.create_table("info", False, None, None, 15, "0, - exit")
+
+        choice = input("> ")
+        
+        if choice.isdigit() and int(choice) in matching_classes:
+            chosen_item = matching_classes[int(choice)]
+            
+            while (True):
+                d.create_table("info", True, None, {0 : "center"}, 35, "[1] INFO | [2] USE | [3] BACK" )
+                choice = input("> ")
+                if choice == "1":
+                    d.create_table("info", True, None, {0 : "center"}, 22, chosen_item["info"] )
+
+                if choice == "2":
+
+                    if chosen_item["type"] == 1:
+                        itemd.use_potions(chosen_item["ID"])
+                    
+                    elif chosen_item["type"] == 2:
+                        d.helmetResistInt = chosen_item["Physical_Resist"]
+                        d.helmet = chosen_item["name"]
+                        d.helmetID =chosen_item["ID"]
+                        d.item.remove(chosen_item["ID"])
+
+                    elif chosen_item["type"] == 3:
+                        d.chestplateResistInt = chosen_item["Physical_Resist"]
+                        d.chestplate = chosen_item["name"]
+                        d.chestplateID =chosen_item["ID"]
+                        d.item.remove(chosen_item["ID"])
+
+                    elif chosen_item["type"] == 4:
+                        if d.heroClass == "SWORDSMAN":
+                            d.Dm += chosen_item["damage"]
+                            d.weapon = chosen_item["name"]
+                            d.weaponID =chosen_item["ID"]
+                            d.item.remove(chosen_item["ID"])
+                        else:
+                            d.create_table("info", True, None, {0 : "center"}, 35, "this weapon is not suitable for you" )
+
+                    elif chosen_item["type"] == 5:
+                        if  d.heroClass == "THIEF":
+                            while True:
+                                d.create_table("info", True, None, {0 : "center", 1 : "center"}, 35, "Which hand should I take the dagger in?", "[1] left | [2] right")
+                                choice = input("> ")
+                                if choice == "1":
+                                    d.Dm += chosen_item["damage"]
+                                    d.weapon = chosen_item["name"]
+                                    d.weaponID =chosen_item["ID"]
+                                    d.item.remove(chosen_item["ID"])
+                                elif choice == "2":
+                                    d.Dm += chosen_item["damage"]
+                                    d.weapon2 = chosen_item["name"]
+                                    d.weapon2ID =chosen_item["ID"]
+                                    d.item.remove(chosen_item["ID"])
+                        else:
+                            d.create_table("info", True, None, {0 : "center"}, 35, "this weapon is not suitable for you" )
+
+                    elif chosen_item["type"] == 6:
+                        if d.heroClass == "MAGICIAN":
+                            d.Dm += chosen_item["damage"]
+                            d.weapon = chosen_item["name"]
+                            d.weaponID = chosen_item["ID"]
+                            d.maxMana += chosen_item["mana"]
+                            d.item.remove(chosen_item["ID"])
+                        else:
+                            d.create_table("info", True, None, {0 : "center"}, 35, "this weapon is not suitable for you" )
+                    
+                    elif chosen_item["type"] == 7:
+                        if d.heroClass == "SWORDSMAN":
+                            d.shieldResistInt = chosen_item["Physical_Resist"]
+                            d.weapon2 = chosen_item["name"]
+                            d.weapon2ID =chosen_item["ID"]
+                            d.item.remove(chosen_item["ID"])
+                        else:
+                            d.create_table("info", True, None, {0 : "center"}, 35, "this weapon is not suitable for you" )
+
+
+                    input("> ")
+                    break
+                
+                if choice == "3":
+                    break
+
+                input("> ")
+        elif choice == "0":
+            break
 
 def start_game(leyer, player):
     if leyer == 1:

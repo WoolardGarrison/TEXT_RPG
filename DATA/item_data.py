@@ -310,31 +310,42 @@ Iron_Shield = {
     "ID": 17,
     "name": "Iron Shield",
     "rarity": "Common",
-    "Physical_Resist" : 0.8,
+    "Physical_Resist" : 0.02,
     "type": 7,
     "minGold": 25,
     "maxGold": 36,
-    "info" : "Physical Resist: Damage / 0.8"
+    "info" : "Physical Resist: 2%"
 }
 Iron_Armor = {
     "ID": 18,
     "name": "Iron Armor",
     "rarity": "Common",
-    "Physical_Resist" : 0.7,
+    "Physical_Resist" : 0.05,
     "type": 3,
     "minGold": 28,
     "maxGold": 39,
-    "info" : "Physical Resist: Damage / 0.7"
+    "info" : "Physical Resist: 5%"
 }
 Iron_Helm = {
     "ID": 19,
     "name": "Iron Helm",
     "rarity": "Common",
-    "Physical Resist" : 0.7,
+    "Physical_Resist" : 0.03,
     "type": 3,
     "minGold": 25,
     "maxGold": 36,
-    "info" : "Physical Resist: Damage / 0.7"
+    "info" : "Physical Resist: 3%"
+}
+Wooden_Staff = {
+    "ID": 19,
+    "name": "Wooden Staff",
+    "rarity": "Common",
+    "damage" : 1,
+    "mana" : 15,
+    "type": 6,
+    "minGold": 26,
+    "maxGold": 37,
+    "info" : "damage + 1 | mana + 15"
 }
 
 

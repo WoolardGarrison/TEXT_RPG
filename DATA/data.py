@@ -18,37 +18,34 @@ import DATA.level_data as ld
 # Получаем абсолютный путь к текущему скрипту
 current_directory = os.path.dirname(os.path.abspath(__file__))
 
-# Формируем путь к файлу me.py
 openInventory_path = os.path.join(current_directory, 'EVENT', 'openInventory.py')
-
-# Получение пути к директории AppData\Local
 appdata_dir = os.getenv('LOCALAPPDATA')
-
-# Проверка существования директории TextRPG\gameSAVE, если нет - создать
 save_dir = os.path.join(appdata_dir, 'TextRPG', 'gameSAVE')
 os.makedirs(save_dir, exist_ok=True)
 
 shop_types = ["firearms", "alchemy"]
-
 #                                                                                                                 run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data  Trip   Inv
 run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips, inventory, = True, True, False, False, False, False, True, True, False, False, {}, False, False
-
 #            L 
 Language = "EN" 
 
 #                                              DP     ManaR  ECAXP
 DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
-
-#                                                                    MRI  PRI  poiRI TRI
-MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
-
+#                                                                      MRI  PRI   poiRI  TRI
+MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = -0.8, -0.8, -0.8,  -0.8 
+#                                                      HR CR SR
+helmetResistInt, chestplateResistInt, shieldResistInt = 0, 0, 0
+#
+helmetID, chestplateID, shieldID, weaponID, weapon2ID = None, None, None, None, None
+#                       MPRI
+MagicPhysicalResistInt = 0
 #                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   !map
 name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 50, 0, 0, 0, 1, True
 #                                                              PM    x  y   E  M   mM  S
 playerMonstronomicon, Px, Py, Effects, mana, maxMana, speed = False, 0, 0, [], 50, 50, 1
-
 #                                            item    H  CH  WE1 WE2
 item, helmet, chestplate, weapon, weapon2 = [1, 1], "", "", "", ""
+
 
 room_map = []
 
