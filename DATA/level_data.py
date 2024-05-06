@@ -4,6 +4,8 @@ import os
 # ƒ - spawn
 # ₩ - village
 # ʘ - exit
+# ₲ Boss
+
 
 layerMapGUI_1 = [
     "               *****************               ",
