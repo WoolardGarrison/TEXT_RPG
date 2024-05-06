@@ -181,3 +181,17 @@ blacksmith_phrases_no_product = [
     "You're as persistent as a flea on a dog's back, you know that? Back off and let me work."
 ]
 
+blacksmith_purchase_phrases = [
+    "A fine choice, my friend. It'll serve you well.",
+    "You've got yourself a sturdy piece there. Treat it right.",
+    "Excellent taste, if I may say so. May it bring you fortune.",
+    "A wise investment, indeed. Few can appreciate quality craftsmanship like you do.",
+    "You won't regret that, mark my words. A weapon of true quality.",
+    "Good choice, adventurer. With that in hand, you'll be ready for whatever comes your way.",
+    "Ah, that's a fine piece you've chosen. May it keep you safe.",
+    "A discerning eye you have, my friend. That's one of my best works, if I do say so myself.",
+    "You've made a wise decision. It will become an extension of your arm.",
+    "I'll admit, you've got a knack for picking the best. That purchase will serve you well."
+]
+
+# Control + S
