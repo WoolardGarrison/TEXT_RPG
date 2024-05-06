@@ -193,3 +193,5 @@ blacksmith_purchase_phrases = [
     "You've made a wise decision. It will become an extension of your arm.",
     "I'll admit, you've got a knack for picking the best. That purchase will serve you well."
 ]
+
+# Control + S
