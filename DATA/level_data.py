@@ -1,6 +1,10 @@
 import time
 import os
 
+# ƒ - spawn
+# ₩ - village
+# ʘ - exit
+
 layerMapGUI_1 = [
     "               *****************               ",
     "          ****        \          ****          ",
