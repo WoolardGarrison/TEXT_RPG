@@ -120,7 +120,7 @@ forest = {
         "speed" : 5,
     },
     "forest_wyrmling": {
-        "name": "forest magician",
+        "name": "forest wyrmling",
         "Hp": 75,
         "Damage": 11,
         "Xp": 70,
