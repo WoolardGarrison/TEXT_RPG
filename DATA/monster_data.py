@@ -11,7 +11,7 @@ forest = {
         "agresia" : 0.6,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
-        "Description" : "green, big ears, short stature, sharp talons.",
+        "Description" : " A mischievous creature of the forest, the goblin is a diminutive humanoid with green skin, protruding ears, and a hunched stature. Its sharp, claw-like talons and keen eyesight make it a skilled hunter and scavenger, often found lurking in the shadows of the woodland.",
         "speed" : 5,
     },
     "forest_troll": {
@@ -26,7 +26,7 @@ forest = {
         "agresia" : 0.76,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
-        "Description" : "green, a big increase, frizzy green hair with beard, body hair.",
+        "Description" : "Towering over the trees, the forest troll is a massive, lumbering brute with thick, gnarled skin and wild, frizzy green hair cascading down its broad shoulders. Its muscular frame and brutish demeanor exude an aura of intimidation, marking it as a formidable adversary within the depths of the forest.",
         "speed" : 3,
     },
     "forest_witcher": {
@@ -41,7 +41,7 @@ forest = {
         "agresia" : 0.86,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
-        "Description" : "camouflage raincoat covering the face, long staff.",
+        "Description" : "Cloaked in a camouflage raincoat that blends seamlessly with the forest foliage, the forest witcher is a solitary figure wielding a long, gnarled staff adorned with mystical runes. Its obscured visage hints at a mysterious past, and its mastery of nature's magic makes it a formidable protector of the woodland realm.",
         "speed" : 4,
     },
     "wooden_ent": {
@@ -56,7 +56,7 @@ forest = {
         "agresia" : 0.89,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
-        "Description" : "sliver skin, wooden body texture, claim face.",
+        "Description" : "Rising from the forest floor like a towering colossus, the wooden ent is an ancient guardian of the woods, its massive form composed of gnarled bark and intertwined roots. Its eyes, like pools of ancient wisdom, survey the forest with a watchful gaze, and its towering presence commands respect from all who dare to enter its domain.",
         "speed" : 2,
     },
     "forest_ghost": {
@@ -71,7 +71,7 @@ forest = {
         "agresia" : 0.9,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
-        "Description" : "invisible, nimble, quiet, secretive, good hearing.",
+        "Description" : "A spectral wraith haunting the depths of the forest, the forest ghost is an ephemeral entity shrouded in wisps of ethereal mist. Its form flickers in and out of sight, its movements silent and elusive as it stalks its prey with otherworldly grace. Only the keenest of senses can detect its presence before it strikes from the shadows.",
         "speed" : 5,
     },
      "forest_kashechei": {
@@ -86,7 +86,7 @@ forest = {
         "agresia" : 0.4,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
-        "Description" : "immortal, crown on head, pale skin color, skinny arms.",
+        "Description" : "Crowned with an immortal diadem, the forest kashechei is a skeletal figure draped in tattered robes, its pale, emaciated form hinting at the passage of countless ages. Bound to the forest by ancient magic, it stands as a sentinel against intruders, its bony fingers ready to unleash arcane fury upon any who dare to challenge its dominion.",
         "speed" : 1,
     },
     "forest_wildSquirrel": {
@@ -101,7 +101,7 @@ forest = {
         "agresia" : 0.9,
         "PhysicalDamage" : True,
         "MagicDamage" : False,
-        "Description" : "fast, aggressive, small, weak",
+        "Description" : "Darting through the underbrush with lightning speed, the forest wild squirrel is a small yet ferocious creature with fur as dark as the shadows beneath the canopy. Its sharp claws and teeth are honed to a razor's edge, and its agile movements make it a blur of motion as it defends its territory with unwavering tenacity.",
         "speed" : 7,
     },
     "forest_magician": {
@@ -116,7 +116,7 @@ forest = {
         "agresia" : 0.7,
         "PhysicalDamage" : False,
         "MagicDamage" : True,
-        "Description" : "black robe, static, dangerous, mysterious",
+        "Description" : "Enshrouded in a billowing cloak of midnight black, the forest magician is a figure of dark mystery and arcane power. Its eyes gleam with an otherworldly intensity, and its hands crackle with the energy of forbidden spells. Within its grasp lies the secrets of the forest's darkest magic, ready to be unleashed upon any who dare to cross its path.",
         "speed" : 5,
     },
     "forest_wyrmling": {
@@ -131,7 +131,7 @@ forest = {
         "agresia" : 3,
         "PhysicalDamage" : True,
         "MagicDamage" : True,
-        "Description" : "Green Small Dragon, wings, fierce,",
+        "Description" : "A majestic creature of legend, the forest wyrmling is a small yet formidable dragon with scales as green as the forest canopy. Its wings beat with the rhythm of the wind, propelling it through the skies with unmatched grace and agility. With fiery breath and razor-sharp claws, it defends its woodland realm against all who would seek to disturb its ancient slumber.",
         "speed" : 5,
     }
 }
