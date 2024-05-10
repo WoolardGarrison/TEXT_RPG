@@ -118,5 +118,20 @@ forest = {
         "MagicDamage" : True,
         "Description" : "black robe, static, dangerous, mysterious",
         "speed" : 5,
+    },
+    "forest_wyrmling": {
+        "name": "forest magician",
+        "Hp": 75,
+        "Damage": 11,
+        "Xp": 70,
+        "Coin": 35,
+        "PhysicalResist": 2,
+        "MagicResist": 3,
+        "PoisonResist": 3,
+        "agresia" : 3,
+        "PhysicalDamage" : True,
+        "MagicDamage" : True,
+        "Description" : "Green Small Dragon, wings, fierce,",
+        "speed" : 5,
     }
 }
