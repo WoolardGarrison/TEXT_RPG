@@ -6,6 +6,7 @@ def clear():
 
 clear()
 
+import random
 import sys
 import time
 import DATA.audio.data_audio as da
@@ -14,47 +15,71 @@ import pyautogui
 import ctypes
 import DATA.level_data as ld
 
-shop_types = ["firearms", "alchemy"]
+# Получаем абсолютный путь к текущему скрипту
+current_directory = os.path.dirname(os.path.abspath(__file__))
 
-#                                                                                                       run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data Trip
-run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips = True, True, False, False, False, False, True, True, False, False, {}, False
+openInventory_path = os.path.join(current_directory, 'EVENT', 'openInventory.py')
+appdata_dir = os.getenv('LOCALAPPDATA')
+save_dir = os.path.join(appdata_dir, 'TextRPG', 'gameSAVE')
+os.makedirs(save_dir, exist_ok=True)
+
+shop_types = ["firearms", "alchemy"]
+#                                                                                                                 run   meny  play   autor  skipE  errorL  CH   batl   GO     SH   data  Trip   Inv
+run, meny, play, autors, skip_enter, errore_load, creating_hero, batle, game_over, shop, data, trips, inventory, = True, True, False, False, False, False, True, True, False, False, {}, False, False
+#            L 
+Language = "EN" 
 
 #                                              DP     ManaR  ECAXP
 DoublePunch, ManaRecovery, EarningCoinsAndXP = False, False, False
-
-#                                                                    MRI  PRI  poiRI TRI
-MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = 1.8, 1.8, 1.8,  1.8 
-
+#                                                                      MRI  PRI   poiRI  TRI
+MagicResistInt, PhysicalResistInt, PoisonResistInt, ToxinResistInt = -0.8, -0.8, -0.8,  -0.8 
+#                                                      HR CR SR
+helmetResistInt, chestplateResistInt, shieldResistInt = 0, 0, 0
+#
+helmetID, chestplateID, shieldID, weaponID, weapon2ID = None, None, None, None, None
+#                       MPRI
+MagicPhysicalResistInt = 0
 #                                                                                                 name    class   Dm  HP  mHP G  XP XTL L  IS P  L   !map
-name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 10, 0, 0, 0, 1, True
+name, heroClass, Dm, Hp, maxHp, gold, Xp, XpToLv, Lv, improvementStar, points, layer, playerMap = "NULL", "NULL", 20, 70, 70, 0, 0, 50, 0, 0, 0, 1, True
 #                                                              PM    x  y   E  M   mM  S
 playerMonstronomicon, Px, Py, Effects, mana, maxMana, speed = False, 0, 0, [], 50, 50, 1
+#                                            item    H  CH  WE1 WE2
+item, helmet, chestplate, weapon, weapon2 = [1, 1], "", "", "", ""
 
-#                                          item H  CH  WE1 WE2
-item, helmet, chestplate, weapon, weapon2 = [], "", "", "", ""
 
 room_map = []
 
 hdl = ctypes.windll.kernel32.GetStdHandle(-11)
 
 logo = [
-    "▄▄▄█████▓ █     █░ ██▓ ██▓     ██▓  ▄████  ██░ ██ ▄▄▄█████▓    ▄████▄   ██░ ██  ██▀███   ▒█████   ███▄    █  ██▓ ▄████▄   ██▓    ▓█████   ██████",
-    "▓  ██▒ ▓▒▓█░ █ ░█░▓██▒▓██▒    ▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▒██▀ ▀█  ▓██░ ██▒▓██ ▒ ██▒▒██▒  ██▒ ██ ▀█   █ ▓██▒▒██▀ ▀█  ▓██▒    ▓█   ▀ ▒██    ▒",
-    "▒ ▓██░ ▒░▒█░ █ ░█ ▒██▒▒██░    ▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▒▓█    ▄ ▒██▀▀██░▓██ ░▄█ ▒▒██░  ██▒▓██  ▀█ ██▒▒██▒▒▓█    ▄ ▒██░    ▒███   ░ ▓██▄",
-    "░ ▓██▓ ░ ░█░ █ ░█ ░██░▒██░    ░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒▓▓▄ ▄██▒░▓█ ░██ ▒██▀▀█▄  ▒██   ██░▓██▒  ▐▌██▒░██░▒▓▓▄ ▄██▒▒██░    ▒▓█  ▄   ▒   ██▒",
-    "  ▒██▒ ░ ░░██▒██▓ ░██░░██████▒░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒ ▓███▀ ░░▓█▒░██▓░██▓ ▒██▒░ ████▓▒░▒██░   ▓██░░██░▒ ▓███▀ ░░██████▒░▒████▒▒██████▒▒",
-    "  ▒ ░░   ░ ▓░▒ ▒  ░▓  ░ ▒░▓  ░░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ░▒ ▒  ░ ▒ ░░▒░▒░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ░▓  ░ ░▒ ▒  ░░ ▒░▓  ░░░ ▒░ ░▒ ▒▓▒ ▒ ░",
-    "    ░      ▒ ░ ░   ▒ ░░ ░ ▒  ░ ▒ ░  ░   ░  ▒ ░▒░ ░    ░         ░  ▒    ▒ ░▒░ ░  ░▒ ░ ▒░  ░ ▒ ▒░ ░ ░░   ░ ▒░ ▒ ░  ░  ▒   ░ ░ ▒  ░ ░ ░  ░░ ░▒  ░ ░",
-    "  ░        ░   ░   ▒ ░  ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░         ░  ░░ ░  ░░   ░ ░ ░ ░ ▒     ░   ░ ░  ▒ ░░          ░ ░      ░   ░  ░  ░",
-    "             ░     ░      ░  ░ ░        ░  ░  ░  ░            ░ ░       ░  ░  ░   ░         ░ ░           ░  ░  ░ ░          ░  ░   ░  ░      ░",
-    "                                                              ░                                                 ░"
+    "                                                                                                                                                                                  ",
+    "      ____________________                                                                                                                                                        ",
+    "     /                   /|      ▄▄▄█████▓ █     █░ ██▓ ██▓     ██▓  ▄████  ██░ ██ ▄▄▄█████▓    ▄████▄   ██░ ██  ██▀███   ▒█████   ███▄    █  ██▓ ▄████▄   ██▓    ▓█████   ██████ ",
+    "    / /  ¯¯¯¯¯¯¯¯¯¯¯  / //|      ▓  ██▒ ▓▒▓█░ █ ░█░▓██▒▓██▒    ▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▒██▀ ▀█  ▓██░ ██▒▓██ ▒ ██▒▒██▒  ██▒ ██ ▀█   █ ▓██▒▒██▀ ▀█  ▓██▒    ▓█   ▀ ▒██    ▒ ",
+    "   /_/_/_____T_____/_/_// |      ▒ ▓██░ ▒░▒█░ █ ░█ ▒██▒▒██░    ▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▒▓█    ▄ ▒██▀▀██░▓██ ░▄█ ▒▒██░  ██▒▓██  ▀█ ██▒▒██▒▒▓█    ▄ ▒██░    ▒███   ░ ▓██▄   ",
+    "  / / /      C    / / //  /      ░ ▓██▓ ░ ░█░ █ ░█ ░██░▒██░    ░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒▓▓▄ ▄██▒░▓█ ░██ ▒██▀▀█▄  ▒██   ██░▓██▒  ▐▌██▒░██░▒▓▓▄ ▄██▒▒██░    ▒▓█  ▄   ▒   ██▒",
+    " / /  ___________  / //  /         ▒██▒ ░ ░░██▒██▓ ░██░░██████▒░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒ ▓███▀ ░░▓█▒░██▓░██▓ ▒██▒░ ████▓▒░▒██░   ▓██░░██░▒ ▓███▀ ░░██████▒░▒████▒▒██████▒▒",
+    "/___________________//  /          ▒ ░░   ░ ▓░▒ ▒  ░▓  ░ ▒░▓  ░░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ░▒ ▒  ░ ▒ ░░▒░▒░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ░▓  ░ ░▒ ▒  ░░ ▒░▓  ░░░ ▒░ ░▒ ▒▓▒ ▒ ░",
+    "|═══════════════════|  /             ░      ▒ ░ ░   ▒ ░░ ░ ▒  ░ ▒ ░  ░   ░  ▒ ░▒░ ░    ░         ░  ▒    ▒ ░▒░ ░  ░▒ ░ ▒░  ░ ▒ ▒░ ░ ░░   ░ ▒░ ▒ ░  ░  ▒   ░ ░ ▒  ░ ░ ░  ░░ ░▒  ░ ░",
+    "|═══════════════════| /            ░        ░   ░   ▒ ░  ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░         ░  ░░ ░  ░░   ░ ░ ░ ░ ▒     ░   ░ ░  ▒ ░░          ░ ░      ░   ░  ░  ░  ",
+    "|═══════════════════|/                        ░     ░      ░  ░ ░        ░  ░  ░  ░            ░ ░       ░  ░  ░   ░         ░ ░           ░  ░  ░ ░          ░  ░   ░  ░      ░  ",
+    "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯                                                                          ░                                                 ░                                ",
+]
+
+text_rpg_logo = [
+    "████████╗███████╗██╗░░██╗████████╗  ██████╗░██████╗░░██████╗░",
+    "╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝  ██╔══██╗██╔══██╗██╔════╝░",
+    "░░░██║░░░█████╗░░░╚███╔╝░░░░██║░░░  ██████╔╝██████╔╝██║░░██╗░",
+    "░░░██║░░░██╔══╝░░░██╔██╗░░░░██║░░░  ██╔══██╗██╔═══╝░██║░░╚██╗",
+    "░░░██║░░░███████╗██╔╝╚██╗░░░██║░░░  ██║░░██║██║░░░░░╚██████╔╝",
+    "░░░╚═╝░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░  ╚═╝░░╚═╝╚═╝░░░░░░╚═════╝░",
 ]
 
 # Функции сохранения и загрузки данных
 def saveFile():
-    global name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
-           PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
-           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, data, item, \
+    global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, \
+           MagicResistInt, PhysicalResistInt, PoisonResistInt, \
+           ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, item, \
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     data = {
@@ -68,10 +93,6 @@ def saveFile():
         "XpToLv": XpToLv,
         "Lv": Lv,
         "DoublePunch": DoublePunch,
-        "MagicResist": MagicResist,
-        "PhysicalResist": PhysicalResist,
-        "PoisonResist": PoisonResist,
-        "ToxinResist": ToxinResist,
         "MagicResistInt": MagicResistInt,
         "PhysicalResistInt": PhysicalResistInt,
         "PoisonResistInt": PoisonResistInt,
@@ -90,23 +111,21 @@ def saveFile():
         "Py" : Py,
     }
 
-    with open("save.json", "w") as f:
+    with open(os.path.join(save_dir, "save.json"), "w") as f:
         json.dump(data, f, indent=4)
 
-
 def loadFile():
-    global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, MagicResist, \
-           PhysicalResist, PoisonResist, ToxinResist, MagicResistInt, PhysicalResistInt, PoisonResistInt, \
+    global errore_load, name, heroClass, Hp, maxHp, gold, Dm, Xp, XpToLv, Lv, DoublePunch, \
+           MagicResistInt, PhysicalResistInt, PoisonResistInt, \
            ToxinResistInt, ManaRecovery, EarningCoinsAndXP, improvementStar, points, item, \
            helmet, chestplate, weapon, weapon2, layer, Px, Py
 
     try:
-        with open("save.json", "r") as f:
+        with open(os.path.join(save_dir, "save.json"), "r") as f:
             data = json.load(f)
 
         # Проверка наличия всех необходимых ключей в загруженных данных
-        required_keys = ["name", "heroClass", "Hp", "maxHp", "gold", "Dm", "Xp", "XpToLv", "Lv", "DoublePunch",
-                         "MagicResist", "PhysicalResist", "PoisonResist", "ToxinResist", "MagicResistInt",
+        required_keys = ["name", "heroClass", "Hp", "maxHp", "gold", "Dm", "Xp", "XpToLv", "Lv", "DoublePunch", "MagicResistInt",
                          "PhysicalResistInt", "PoisonResistInt", "ToxinResistInt", "ManaRecovery",
                          "EarningCoinsAndXP", "improvementStar", "points", "item", "helmet", "chestplate",
                          "weapon", "weapon2", "layer", "Px", "Py"]
@@ -125,10 +144,6 @@ def loadFile():
         XpToLv = data["XpToLv"]
         Lv = data["Lv"]
         DoublePunch = data["DoublePunch"]
-        MagicResist = data["MagicResist"]
-        PhysicalResist = data["PhysicalResist"]
-        PoisonResist = data["PoisonResist"]
-        ToxinResist = data["ToxinResist"]
         MagicResistInt = data["MagicResistInt"]
         PhysicalResistInt = data["PhysicalResistInt"]
         PoisonResistInt = data["PoisonResistInt"]
@@ -206,7 +221,8 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
                         current_line = word + " "
                 lines.append(current_line)
                 for line in lines:
-                    print("|| {:<{width}} ||".format(line.strip(), width=table_width))
+                    formatted_line = " ".join(line.strip().split())
+                    print("|| {:<{width}} ||".format(formatted_line, width=table_width))
                     da.play_sound_print()  # проигрываем звук после вывода каждой строки
             else:
                 if alignment is not None and index in alignment:
@@ -237,7 +253,8 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
                         current_line = word + " "
                 lines.append(current_line)
                 for line in lines:
-                    print("!!! {:<{width}} !!!".format(line.strip(), width=table_width))
+                    formatted_line = " ".join(line.strip().split())
+                    print("!!! {:<{width}} !!!".format(formatted_line, width=table_width))
                     da.play_sound_print()
             else:
                 if alignment is not None and index in alignment:
@@ -259,6 +276,7 @@ def create_table(style="info", use_clear=True, separator_positions=None, alignme
     elif style == "error":
         separator_down_error()
     da.play_sound_print()
+
 
 def play_animation(frames, delay=0.3):
     clear()
@@ -316,8 +334,18 @@ def display_map(map_array, player):
         time.sleep(0.08)  # добавим небольшую задержку для лучшей анимации
 
 def loading_animation(imports):
+    animation_symbols = ['|', '-', '-', '-']  # Символы для анимации
     max_length = max(len(module) for module in imports)
     for module in imports:
-        sys.stdout.write(f"\rLoading {module}...{' '*(max_length - len(module))} DONE\n")
+        sys.stdout.write(f"\r| {module}{' '*(max_length - len(module))} ")
         sys.stdout.flush()
-        time.sleep(0.1)  # Увеличиваем задержку до 0.5 секунды
+        for _ in range(5):  # Проходим по всем символам анимации
+            sys.stdout.write(animation_symbols[_ % len(animation_symbols)] + ' ')
+            sys.stdout.flush()
+            time.sleep(0.005)  # Задержка между символами анимации
+            sys.stdout.write('\b')  # Удаляем предыдущий символ анимации
+            sys.stdout.flush()
+        sys.stdout.write('\b\b\b\b\b\b')  # Удаляем анимацию
+        sys.stdout.write(" DONE\n")
+        sys.stdout.flush()
+        time.sleep(random.uniform(0.05, 0.2))  # Случайная задержка от 0.1 до 0.4 секунд
