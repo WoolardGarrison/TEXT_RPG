@@ -239,7 +239,7 @@ village = {
         "agresia": 0.95,
         "PhysicalDamage": True,
         "MagicDamage": True,
-        "Description": "The fearsome dragon, guardian of untold riches and ancient secrets, roosts atop the tallest peak overlooking the village, its scales gleaming in the sunlight and its fiery breath lighting up the night sky. With a roar that shakes the earth and wings that blot out the sun, it is a terror to behold, a force of nature unleashed upon the world.",
+        "Description": "its The fearsome dragon, guardian of untold riches and ancient secrets, roosts atop the tallest peak overlooking the village, its scales gleaming in the sunlight and its fiery breath lighting up the night sky. With a roar that shakes the earth and wings that blot out the sun, it is a terror to behold, a force of nature unleashed upon the world.",
         "speed": 8,
     }
     
